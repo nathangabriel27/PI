@@ -85,7 +85,7 @@ export default class Login extends Component<Props> {
         </TouchableOpacity>
 
         
-        <TouchableOpacity onPress={()=> this.openSignup()} style={styles.askButton} >
+        <TouchableOpacity onPress={()=> this.abrirCadastro()} style={styles.askButton} >
           <Text style={styles.buttonText}>Cadastro</Text>
         </TouchableOpacity>
 
@@ -170,8 +170,8 @@ export default class Login extends Component<Props> {
     Alert.alert("Olá", "Você confirmou");
   }
 
-  openSignup(){
-    Actions.signup();
+  abrirCadastro(){
+    Actions.Cadastro();
   }
 }
 
