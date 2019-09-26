@@ -28,6 +28,7 @@ export default class App extends Component<Props> {
       deviceHeight: height
     };
   }
+   
 
   componentWillMount() {
     //Posso Fazer qualquer tipo de configuração global aqui como por exemplo o Firebase
