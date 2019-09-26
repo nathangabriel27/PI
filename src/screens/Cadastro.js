@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, TouchableOpacity, Alert, Image, Dimensions, TextInput } from 'react-native';
+import { Platform, StyleSheet, Text, View, TouchableOpacity, Alert, Image, Dimensions, TextInput, ScrollView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import firebase from "firebase";
 
@@ -33,40 +33,44 @@ export default class Login extends Component<Props> {
 
   render() {
     return (
+
       <View style={styles.container}>
+        <ScrollView>
 
-        <TouchableOpacity onPress={() => this.voltaLogin()} style={styles.backButton} >
-          <Text style={styles.buttonText}>Voltar para Login</Text>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.voltaLogin()} style={styles.backButton} >
+            <Text style={styles.buttonText}>Voltar para Login</Text>
+          </TouchableOpacity>
 
-        <Text style={styles.titleText}>Cadastro</Text>
+          <Text style={styles.titleText}>Cadastro</Text>
 
-        <TextInput
-          style={styles.inputStyle}
-          onChangeText={(text) => this.setState({ nome: text })}
-          placeholder="Nome"
-          value={this.state.nome}
-        />
+          <TextInput
+            style={styles.inputStyle}
+            onChangeText={(text) => this.setState({ nome: text })}
+            placeholder="Nome"
+            value={this.state.nome}
+          />
 
-        <TextInput
-          style={styles.inputStyle}
-          onChangeText={(text) => this.setState({ email: text })}
-          placeholder="transportadora@pi.com.br"
-          value={this.state.email}
-        />
+          <TextInput
+            style={styles.inputStyle}
+            onChangeText={(text) => this.setState({ email: text })}
+            placeholder="transportadora@pi.com.br"
+            value={this.state.email}
+          />
 
-        <TextInput
-          style={styles.inputStyle}
-          onChangeText={(text) => this.setState({ password: text })}
-          placeholder="senha aqui"
-          value={this.state.password}
-        />
+          <TextInput
+            style={styles.inputStyle}
+            onChangeText={(text) => this.setState({ password: text })}
+            placeholder="senha aqui"
+            value={this.state.password}
+          />
 
 
 
-        <TouchableOpacity onPress={() => this.desejaRegistra()} style={styles.registerButton} >
-          <Text style={styles.buttonText}>Cadastrar</Text>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.desejaRegistra()} style={styles.registerButton} >
+            <Text style={styles.buttonText}>Cadastrar</Text>
+          </TouchableOpacity>
+        </ScrollView>
+
       </View>
     );
   }
@@ -92,22 +96,22 @@ export default class Login extends Component<Props> {
 
   registerUser(email, password, nome) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((currentUser) => {
-      firebase.database().ref("Users/" + currentUser.user.uid).update({
-        uid: currentUser.user.uid,
-        email: email,
-        nome: nome,
-        
+      .then((currentUser) => {
+        firebase.database().ref("Users/" + currentUser.user.uid).update({
+          uid: currentUser.user.uid,
+          email: email,
+          nome: nome,
+
+        });
+        Alert.alert("Sucesso!", "Usuário criado");
+        Actions.pop();
+      })
+      .catch((error) => {
+        console.log("firebase error: " + error);
+        Alert.alert("Errou no auth!", error.code)
       });
-      Alert.alert("Sucesso!", "Usuário criado");
-      Actions.pop();
-    })
-    .catch((error) => {
-      console.log("firebase error: " + error);
-      Alert.alert("Errou no auth!", error.code)
-    });
   }
-  
+
 }
 
 

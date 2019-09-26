@@ -5,7 +5,7 @@ import { Scene, Router } from "react-native-router-flux";
 
 import Login from "./src/screens/Login";
 import Cadastro from "./src/screens/Cadastro";
-import RecuperarSenha from "./src/screens/RecuperarSenha";
+import Dashboard from "./src/screens/Dashboard";
 
 class RouterComponent extends Component {
 	constructor(props) {
@@ -20,8 +20,8 @@ class RouterComponent extends Component {
 					<Scene key="app">
 						<Scene key="auth" initial hideNavBar>
 							<Scene key="login" component={Login} initial />
-							<Scene key="Cadastro" component={Cadastro} />
-							<Scene key="RecuperarSenha" component={RecuperarSenha} />
+							<Scene key="cadastro" component={Cadastro} />
+							<Scene key="dashboard" component={Dashboard} />
 						
 						</Scene>
 					</Scene>

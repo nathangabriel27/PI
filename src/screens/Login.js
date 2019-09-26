@@ -1,30 +1,9 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TouchableOpacity, Alert, Image, Dimensions, TextInput} from 'react-native';
+import {Platform, StyleSheet, Text, View, TouchableOpacity, Alert, Image, Dimensions, ScrollView, TextInput} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import firebase from "firebase";
 
 var {height, width} = Dimensions.get('window');
-
-
-
-
-/* export default function Login() {
-  return (
-    <View style={styles.container}>
-      <Text>Tela de Login </Text>
-
-      <Text>teste</Text>
-      <TextInput
-        placeholder="Ex: fulano@gmail.com"
-      />
-      <TouchableOpacity onPress={}>
-        <Text >TELA DO LOGIN.JS</Text>
-      </TouchableOpacity>
-
-
-    </View>
-  );
-} */
 
 export default class Login extends Component<Props> {
 
@@ -36,22 +15,6 @@ export default class Login extends Component<Props> {
       email: "",
       senha: ""
     };
-  }
-
-  componentDidMount(){
-    //const currentUser = firebase.auth().currentUser;
-/*     firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in.
-        console.log("Current user ")
-        console.log(JSON.stringify(user))
-        if (user){//Se é diferente de null, se é true, se é diferente de vazio, se é diferente de undefind
-          Actions.dashboard();
-        }
-      } else {
-        // No user is signed in.
-      }
-    }); */
   }
 
   render() {
@@ -73,18 +36,14 @@ export default class Login extends Component<Props> {
           value={this.state.senha}
         />
 
-
-
         <TouchableOpacity onPress={()=> this.loginUser( this.state.email, this.state.senha)} style={styles.loginButton} >
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
 
-        
         <TouchableOpacity onPress={()=> this.esqueciMinhaSenha()} style={styles.forgotButton} >
           <Text style={styles.forgotText}>Esqueci minha senha</Text>
         </TouchableOpacity>
 
-        
         <TouchableOpacity onPress={()=> this.abrirCadastro()} style={styles.askButton} >
           <Text style={styles.buttonText}>Cadastro</Text>
         </TouchableOpacity>
@@ -129,18 +88,18 @@ export default class Login extends Component<Props> {
       //Alert.alert("Sucesso!");
       Actions.dashboard();
     })
+    // Tratando erros de codigo 
     .catch(function(error) {
-      // Handle Errors here.
       if (error.code == "auth/user-not-found"){
         Alert.alert("Atenção!", "Usuário não encontrado");
       }
       else {
-        Alert.alert("Atenção!", "Procure o dev e brigue com ele pq você não sabe sua senha.");
+     //   Alert.alert("Atenção!", "Procure o dev e brigue com ele pq você não sabe sua senha.");
+        Alert.alert("Errou!!", "Código: " + error.code + "\nMensagem: " + error.message);
       }
-      //Alert.alert("Errou!!", "Código: " + error.code + "\nMensagem: " + error.message);
       // ...
     });
-  }
+  } 
 
   textoCondicional(condicao){
     if (condicao == "maior de minas"){
@@ -171,8 +130,9 @@ export default class Login extends Component<Props> {
   }
 
   abrirCadastro(){
-    Actions.Cadastro();
+    Actions.cadastro();
   }
+
 }
 
 const styles = StyleSheet.create({
