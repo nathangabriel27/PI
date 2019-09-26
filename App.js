@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <Text>Projeto de PI</Text>
+      <Text>Ta rolando</Text>
+    </View>
+  );
+}
+=======
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, Dimensions } from 'react-native';
 import { Actions } from 'react-native-router-flux';
@@ -7,6 +20,7 @@ console.disableYellowBox = true;
 //import { Actions } from 'router-native-router-flux';
 var { height, width } = Dimensions.get('window');
 import firebase from 'firebase';
+>>>>>>> 0bc9e6159ad1d8241df6dcc2737605c6e8a3e0e1
 
 import Router from './Router';
 
