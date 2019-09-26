@@ -88,15 +88,16 @@ export default class Login extends Component<Props> {
       //Alert.alert("Sucesso!");
       Actions.dashboard();
     })
-    // Tratando erros de codigo 
+    // Tratando erros de codigo no
     .catch(function(error) {
+      // Handle Errors here.
       if (error.code == "auth/user-not-found"){
         Alert.alert("Atenção!", "Usuário não encontrado");
       }
       else {
-     //   Alert.alert("Atenção!", "Procure o dev e brigue com ele pq você não sabe sua senha.");
-        Alert.alert("Errou!!", "Código: " + error.code + "\nMensagem: " + error.message);
+        Alert.alert("Atenção!", "Procure o dev e brigue com ele pq você não sabe sua senha.");
       }
+      //Alert.alert("Errou!!", "Código: " + error.code + "\nMensagem: " + error.message);
       // ...
     });
   } 
@@ -131,6 +132,26 @@ export default class Login extends Component<Props> {
 
   abrirCadastro(){
     Actions.cadastro();
+  }
+
+  loginUser(email, password){
+    //Alert.alert("Confirmar dados", "Verifique se os dados estão corretos.\nEmail: " + email + "\nSenha: "+ password);
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then ((dadosUsuario)=> {
+      //Alert.alert("Sucesso!");
+      Actions.dashboard();
+    })
+    .catch(function(error) {
+      // Handle Errors here.
+      if (error.code == "auth/user-not-found"){
+        Alert.alert("Atenção!", "Usuário não encontrado");
+      }
+      else {
+        Alert.alert("Atenção!", "Procure o dev e brigue com ele pq você não sabe sua senha.");
+      }
+      //Alert.alert("Errou!!", "Código: " + error.code + "\nMensagem: " + error.message);
+      // ...
+    });
   }
 
 }
