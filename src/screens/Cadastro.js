@@ -12,116 +12,121 @@ export default class Login extends Component<Props> {
     this.state = {
       deviceWidth: width,
       deviceHeight: height,
+      nome: "",
       email: "",
-      senha: ""
+      password: "",
+      // cidade: "",
+      //endereco: "",
+      //telefone: "",
+      //abertura: "",
+      //fechamento: ""
     };
   }
 
   componentDidMount() {
-    //const currentUser = firebase.auth().currentUser;
-    /*     firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-            // User is signed in.
-            console.log("Current user ")
-            console.log(JSON.stringify(user))
-            if (user){//Se é diferente de null, se é true, se é diferente de vazio, se é diferente de undefind
-              Actions.dashboard();
-            }
-          } else {
-            // No user is signed in.
-          }
-        }); */
+    const { currentUser } = firebase.auth();
+    if (currentUser) {
+      console.log("Estou logado: ", currentUser.uid)
+    }
+    //Buscar os dados do usuário logado no banco (depois de ter aprendido a fazer push no banco e criar auth)
   }
 
   render() {
     return (
       <View style={styles.container}>
 
-        <Text style={styles.titleText}>PI = 3,14 </Text>
+        <TouchableOpacity onPress={() => this.voltaLogin()} style={styles.backButton} >
+          <Text style={styles.buttonText}>Voltar para Login</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.titleText}>Cadastro</Text>
+
+        <TextInput
+          style={styles.inputStyle}
+          onChangeText={(text) => this.setState({ nome: text })}
+          placeholder="Nome"
+          value={this.state.nome}
+        />
+
         <TextInput
           style={styles.inputStyle}
           onChangeText={(text) => this.setState({ email: text })}
-          placeholder="Ex: fulano@gmail.com"
+          placeholder="transportadora@pi.com.br"
           value={this.state.email}
         />
+
         <TextInput
           style={styles.inputStyle}
-          onChangeText={(text) => this.setState({ senha: text })}
-          placeholder="Senha aqui"
-          secureTextEntry
-          value={this.state.senha}
+          onChangeText={(text) => this.setState({ password: text })}
+          placeholder="senha aqui"
+          value={this.state.password}
         />
 
 
 
-        <TouchableOpacity onPress={() => this.loginUser(this.state.email, this.state.senha)} style={styles.loginButton} >
-          <Text style={styles.buttonText}>Login</Text>
+        <TouchableOpacity onPress={() => this.desejaRegistra()} style={styles.registerButton} >
+          <Text style={styles.buttonText}>Cadastrar</Text>
         </TouchableOpacity>
-
-
-        <TouchableOpacity onPress={() => this.esqueciMinhaSenha()} style={styles.forgotButton} >
-          <Text style={styles.forgotText}>Esqueci minha senha</Text>
-        </TouchableOpacity>
-
-
-        <TouchableOpacity onPress={() => this.abrirCadastro()} style={styles.askButton} >
-          <Text style={styles.buttonText}>Cadastro</Text>
-        </TouchableOpacity>
-
       </View>
     );
   }
 
-  esqueciMinhaSenha() {
-    if (this.state.email == "") {
-      Alert.alert("Erro", "Você precisa informar o seu e-mail");
-    }
-    else {
-      Alert.alert(
-        'Recuperar senha',
-        'Deseja realmente recuperar a senha do e-mail?\n' + this.state.email + '?',
-        [
-          { text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-          {
-            text: 'OK', onPress: () =>
-              this.resetPassword()
-
-          },
-        ],
-
-        { cancelable: false }
-      )
-    }
+  voltaLogin() {
+    Actions.login();
   }
-
-
-
-  openAskAlert() {
+  desejaRegistra() {
     Alert.alert(
-      'Título do Alerta',
-      'Você quer mesmo confirmar?',
+      'Registrar',
+      'Confirma o seu registo com os seguintes dados?\nNome: ' + this.state.nome + "\nEmail: " + this.state.email,
       [
         { text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
         {
           text: 'OK', onPress: () =>
-            this.openSimpleAlert()
+            //this.confirmRegister()
+            this.registerUser(this.state.email, this.state.password, this.state.nome)
         },
       ],
       { cancelable: false }
     )
   }
 
-  voltaLogin() {
-    Actions.Login();
+  registerUser(email, password, nome) {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((currentUser) => {
+      firebase.database().ref("Users/" + currentUser.user.uid).update({
+        uid: currentUser.user.uid,
+        email: email,
+        nome: nome,
+        
+      });
+      Alert.alert("Sucesso!", "Usuário criado");
+      Actions.pop();
+    })
+    .catch((error) => {
+      console.log("firebase error: " + error);
+      Alert.alert("Errou no auth!", error.code)
+    });
   }
+  
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
   },
   backButton: {
     backgroundColor: "gray",
@@ -130,5 +135,29 @@ const styles = StyleSheet.create({
     margin: 20,
     alignSelf: "flex-start"
   },
+  registerButton: {
+    backgroundColor: "green",
+    borderRadius: 10,
+    padding: 10,
+    margin: 20,
+    width: width * 0.8,
+    alignItems: 'center'
+  },
+  buttonText: {
+    color: "white"
+  },
+  inputStyle: {
+    height: height * 0.06,
+    width: width * 0.85,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 1,
+    margin: width * 0.04
+  },
+  titleText: {
+    fontSize: 30,
+    alignItems: 'center',
+    textAlign: 'center',
+    color: "#039BE5"
+  }
 
 });
