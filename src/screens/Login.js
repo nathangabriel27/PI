@@ -13,7 +13,7 @@ export default class Login extends Component<Props> {
       deviceWidth: width,
       deviceHeight: height,
       email: "",
-      senha: ""
+      password: ""
     };
   }
 
@@ -30,10 +30,10 @@ export default class Login extends Component<Props> {
         />
         <TextInput
           style={styles.inputStyle}
-          onChangeText={(text) => this.setState({ senha: text })}
+          onChangeText={(text) => this.setState({ password: text })}
           placeholder="Senha aqui"
           secureTextEntry
-          value={this.state.senha}
+          value={this.state.password}
         />
 
         <TouchableOpacity onPress={() => this.loginUser(this.state.email, this.state.senha)} style={styles.loginButton} >
@@ -65,7 +65,7 @@ export default class Login extends Component<Props> {
         //Alert.alert("Sucesso!");
         Actions.dashboard();
       })
-      .catch(function (error) {
+      .catch((error) => {
         // Tratando erros de autenticação
         if (error.code == "auth/invalid-email") {
           Alert.alert("Opa!", "Email ou senha de usuario esta invalido, tente novamente");
@@ -89,7 +89,7 @@ export default class Login extends Component<Props> {
 
   esqueciMinhaSenha() {
     if (this.state.email == "") {
-      Alert.alert("Erro", "Você precisa informar o seu e-mail");
+      Alert.alert("Você esqueceu ? ", "Primeiro você precisa informar o seu e-mail para ser redefinido. ");
     }
     else {
       Alert.alert(

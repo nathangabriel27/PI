@@ -5,6 +5,10 @@ import firebase from "firebase";
 
 var { height, width } = Dimensions.get('window');
 
+console.disableYellowBox = true;
+console.ignoredYellowBox = [' Configurando um timer ']
+
+
 export default class Login extends Component<Props> {
 
   constructor(props) {
@@ -61,6 +65,7 @@ export default class Login extends Component<Props> {
             style={styles.inputStyle}
             onChangeText={(text) => this.setState({ password: text })}
             placeholder="senha aqui"
+            secureTextEntry
             value={this.state.password}
           />
 
@@ -107,8 +112,28 @@ export default class Login extends Component<Props> {
         Actions.pop();
       })
       .catch((error) => {
-        console.log("firebase error: " + error);
-        Alert.alert("Errou no auth!", error.code)
+        // Tratando erros de cadastro
+        if (error.code == "auth/invalid-email") {
+          console.log(error);
+          Alert.alert("Opa!", "Email ou senha de usuario esta invalido, tente novamente");
+        } else {
+          if (error.code == "auth/weak-password") {
+            console.log(error);
+            Alert.alert("Quaaaaaseee....  ", "Sua senha tem que ter pelo menos 6 caracteres, Tente novamente ");
+          } else {
+            if (error.code == "auth/email-already-in-use") {
+              console.log(error);
+              Alert.alert("Ue", "O endereço de email já está sendo usado por outra conta, tente redefinir a senha ou criar com outro email.");
+            } else {
+
+              console.log(error);
+              Alert.alert(error.code, 'teste')
+            }
+
+
+          }
+
+        }
       });
   }
 
