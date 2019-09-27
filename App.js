@@ -3,6 +3,7 @@ import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, D
 import { Actions } from 'react-native-router-flux';
 
 console.disableYellowBox = true;
+console . ignoredYellowBox  = [' Configurando um timer ']
 
 //import { Actions } from 'router-native-router-flux';
 var { height, width } = Dimensions.get('window');
