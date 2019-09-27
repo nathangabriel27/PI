@@ -9,7 +9,7 @@ import Dashboard from "./src/screens/Dashboard";
 import Rota from "./src/screens/Rota";
 
 console.disableYellowBox = true;
-console . ignoredYellowBox  = [' Configurando um timer ']
+console.ignoredYellowBox = [' Configurando um timer ']
 
 
 class RouterComponent extends Component {
@@ -24,11 +24,11 @@ class RouterComponent extends Component {
 				<Router>
 					<Scene key="app">
 						<Scene key="auth" initial hideNavBar>
-							<Scene key="login" component={Login}  />
-							<Scene key="cadastro" component={Cadastro}initial />
+							<Scene key="login" component={Login} initial />
+							<Scene key="cadastro" component={Cadastro} />
 							<Scene key="dashboard" component={Dashboard} />
 							<Scene key="rota" component={Rota} />
-						
+
 						</Scene>
 					</Scene>
 				</Router>

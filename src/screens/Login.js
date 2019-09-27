@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, TouchableOpacity, Alert, Image, Dimensions, ScrollView, TextInput } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import firebase from "firebase";
+import { Icon } from 'react-native-elements'
 
 var { height, width } = Dimensions.get('window');
 
@@ -22,19 +23,30 @@ export default class Login extends Component<Props> {
       <View style={styles.container}>
 
         <Text style={styles.titleText}>PI = 3,14 </Text>
-        <TextInput
-          style={styles.inputStyle}
-          onChangeText={(text) => this.setState({ email: text })}
-          placeholder="Ex: fulano@gmail.com"
-          value={this.state.email}
-        />
-        <TextInput
-          style={styles.inputStyle}
-          onChangeText={(text) => this.setState({ password: text })}
-          placeholder="Senha aqui"
-          secureTextEntry
-          value={this.state.password}
-        />
+
+        <View style={styles.viewInput}>
+
+          <Icon style={styles.icon} name='person' />
+          <TextInput
+            style={styles.inputStyle}
+            onChangeText={(text) => this.setState({ email: text })}
+            placeholder="Ex: fulano@gmail.com"
+            value={this.state.email}
+          />
+
+        </View>
+        <View style={styles.viewInput} >
+
+          <Icon style={styles.icon} name='lock' />
+          <TextInput
+            style={styles.inputStyle}
+            onChangeText={(text) => this.setState({ password: text })}
+            placeholder="Senha aqui"
+            secureTextEntry
+            value={this.state.password}
+          />
+
+        </View>
 
         <TouchableOpacity onPress={() => this.loginUser(this.state.email, this.state.senha)} style={styles.loginButton} >
           <Text style={styles.buttonText}>Login</Text>
@@ -211,4 +223,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     margin: width * 0.04
   },
+  icon: {
+    top: 8,
+    left: 10,
+  },
+  viewInput: {
+    margin: 20,
+    flexDirection: 'row',
+    alignItems: "center"
+  },
+
 });
