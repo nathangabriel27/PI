@@ -125,29 +125,40 @@ export default class Login extends Component<Props> {
         Actions.dashboard();
       })
       .catch(function (error) {
-        // Handle Errors here.
-        if (error.code == "auth/user-not-found") {
-          Alert.alert("Atenção!", "Usuário não encontrado");
-        }
         if (error.code == "auth/invalid-email") {
-          Alert.alert("Atenção!", "Emil de usuário não encontrado");
+          Alert.alert("Opa!", "Email ou senha de usuario esta invalido, tente novamente");
+        } else {
+          if (error.code == "auth/wrong-password") {
+            Alert.alert("Eita !", 'Email ou senha está incorreto,  verifique se tem 6 caracteres e tente novamente. ');
+          } else {
+            if (error.code == "auth/user-not-found") {
+              Alert.alert("", '');
+              Alert.alert('Vishhhhh', 'Este usuario não existe ou esta errado, clique no botão de cadastro ou redefina sua senha',
+                [
+                  { text: 'Criar conta ', onPress: () => Actions.cadastro()},
+                  { text: 'Tentar novamente'},
+                ],
+
+              )
+            }
+          }
+
         }
-        if (error.code == "auth/invalid-password") {
-          Alert.alert("Atenção!", "A senha do usuário ou email esta incorreta ");
-        }
-        if (error.code == "auth/email-already-exists") {
-          Alert.alert("Atenção!", "Este email de usuario já esta cadastrado, por favor tente outro. ");
-        }
-        /*
-           if (error.code == "auth/email-already-exists"){
-          Alert.alert("Atenção!", "Este email de usuario já esta cadastrado, por favor tente outro. ");
-        }
-          */
-        //Alert.alert("Errou!!", "Código: " + error.code + "\nMensagem: " + error.message);
-       
       });
   }
 
+  /*
+    if (error.code == "auth/email-already-exists"){
+    Alert.alert("Atenção!", "Este email de usuario já esta cadastrado, por favor tente outro. ");
+  }
+     if (error.code == "auth/email-already-exists"){
+    Alert.alert("Atenção!", "Este email de usuario já esta cadastrado, por favor tente outro. ");
+  }
+    else {
+    Alert.alert("Atenção!", "Procure o dev e brigue com ele pq você não sabe sua senha.");
+  } */
+  //Alert.alert("Errou!!", "Código: " + error.code + "\nMensagem: " + error.message);
+  // ...
 
 }
 
