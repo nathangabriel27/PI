@@ -50,7 +50,42 @@ export default class Login extends Component<Props> {
 
       </View>
     );
+  }// fim do render  
+
+
+  abrirCadastro() {
+    Actions.cadastro();
   }
+
+
+  loginUser(email, password) {
+    //Alert.alert("Confirmar dados", "Verifique se os dados estão corretos.\nEmail: " + email + "\nSenha: "+ password);
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then((dadosUsuario) => {
+        //Alert.alert("Sucesso!");
+        Actions.dashboard();
+      })
+      .catch(function (error) {
+        // Tratando erros de autenticação
+        if (error.code == "auth/invalid-email") {
+          Alert.alert("Opa!", "Email ou senha de usuario esta invalido, tente novamente");
+        } else {
+          if (error.code == "auth/wrong-password") {
+            Alert.alert("Eita !", 'Email ou senha está incorreto,  verifique se tem 6 caracteres e tente novamente. ');
+          } else {
+            if (error.code == "auth/user-not-found") {
+              Alert.alert('Vishhhhh', 'Este usuario não existe ou esta errado, clique no botão de cadastro ou redefina sua senha',
+                [
+                  { text: 'Criar conta ', onPress: () => Actions.cadastro() },
+                  { text: 'Tentar novamente' },
+                ],
+              )
+            }
+          }
+        }
+      });
+  }
+
 
   esqueciMinhaSenha() {
     if (this.state.email == "") {
@@ -78,87 +113,10 @@ export default class Login extends Component<Props> {
     var auth = firebase.auth();
     var emailAddress = this.state.email;
     auth.sendPasswordResetEmail(emailAddress).then(function () {
-      Alert.alert("Sucesso!!", "email de recuperacao enviado")
+      Alert.alert("Sucesso!!", "email de recuperacao enviado verifique seu email")
     })
   }
 
-
-
-  textoCondicional(condicao) {
-    if (condicao == "maior de minas") {
-      Alert.alert("Atenção", "Cruzeirão Cabuloso");
-    }
-    else {
-      Alert.alert("Atenção", "Não tem bi");
-    }
-
-  }
-
-  openAskAlert() {
-    Alert.alert(
-      'Título do Alerta',
-      'Você quer mesmo confirmar?',
-      [
-        { text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-        {
-          text: 'OK', onPress: () =>
-            this.openSimpleAlert()
-        },
-      ],
-      { cancelable: false }
-    )
-  }
-
-  openSimpleAlert() {
-    Alert.alert("Olá", "Você confirmou");
-  }
-
-  abrirCadastro() {
-    Actions.cadastro();
-  }
-  //
-  loginUser(email, password) {
-    //Alert.alert("Confirmar dados", "Verifique se os dados estão corretos.\nEmail: " + email + "\nSenha: "+ password);
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((dadosUsuario) => {
-        //Alert.alert("Sucesso!");
-        Actions.dashboard();
-      })
-      .catch(function (error) {
-        if (error.code == "auth/invalid-email") {
-          Alert.alert("Opa!", "Email ou senha de usuario esta invalido, tente novamente");
-        } else {
-          if (error.code == "auth/wrong-password") {
-            Alert.alert("Eita !", 'Email ou senha está incorreto,  verifique se tem 6 caracteres e tente novamente. ');
-          } else {
-            if (error.code == "auth/user-not-found") {
-              Alert.alert("", '');
-              Alert.alert('Vishhhhh', 'Este usuario não existe ou esta errado, clique no botão de cadastro ou redefina sua senha',
-                [
-                  { text: 'Criar conta ', onPress: () => Actions.cadastro()},
-                  { text: 'Tentar novamente'},
-                ],
-
-              )
-            }
-          }
-
-        }
-      });
-  }
-
-  /*
-    if (error.code == "auth/email-already-exists"){
-    Alert.alert("Atenção!", "Este email de usuario já esta cadastrado, por favor tente outro. ");
-  }
-     if (error.code == "auth/email-already-exists"){
-    Alert.alert("Atenção!", "Este email de usuario já esta cadastrado, por favor tente outro. ");
-  }
-    else {
-    Alert.alert("Atenção!", "Procure o dev e brigue com ele pq você não sabe sua senha.");
-  } */
-  //Alert.alert("Errou!!", "Código: " + error.code + "\nMensagem: " + error.message);
-  // ...
 
 }
 
