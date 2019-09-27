@@ -5,7 +5,7 @@ import firebase from "firebase";
 
 var { height, width } = Dimensions.get('window');
 
-export default class Dashboard extends Component<Props> {
+export default class Rota extends Component<Props> {
 
   constructor(props) {
     super(props);
@@ -24,19 +24,16 @@ export default class Dashboard extends Component<Props> {
 
       <View style={styles.container}>
 
-        <Text style={styles.welcome}>Welcome to React Native! Dashboard</Text>
+        <Text style={styles.welcome}>Welcome to React Native! pagina de rota </Text>
 
-        <TouchableOpacity onPress={() => this.logout()} style={styles.loginButton} >
+     {/*    <TouchableOpacity style={styles.loginButton} >
           <Text style={styles.buttonText}>Logout</Text>
-        </TouchableOpacity>
-
-
-
+        </TouchableOpacity> */}
 
       </View>
     );
   }
-
+/* 
   logout(){
     firebase.auth().signOut()
     .then(function() {
@@ -46,7 +43,7 @@ export default class Dashboard extends Component<Props> {
     .catch(function(error) {
       // An error happened
     });
-  }
+  } */
 
 }
 
