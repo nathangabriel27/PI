@@ -5,7 +5,7 @@ import firebase from "firebase";
 
 var { height, width } = Dimensions.get('window');
 
-export default class Dashboard extends Component<Props> {
+export default class CadastroProdutos extends Component<Props> {
 
     constructor(props) {
         super(props);
@@ -19,22 +19,68 @@ export default class Dashboard extends Component<Props> {
    
      } */
 
+
+
     render() {
         return (
-
             <View style={styles.container}>
-
-                <Text style={styles.welcome}>Welcome to React Native! Cadastro Produtos</Text>
-
-                <TouchableOpacity onPress={() => this.abrirDashboard()} style={styles.loginButton} >
-                    <Text style={styles.buttonText}>go to dashboard</Text>
+{/*                 <TouchableOpacity onPress={() => this.backToDashboard()} style={styles.backButton} >
+                    <Text style={styles.buttonText}>Voltar para Dashboard</Text>
                 </TouchableOpacity>
 
+                <Text style={styles.titleText}>Cadastro de Local 2</Text>
 
 
+                <TextInput
+                    style={styles.inputStyle}
+                    onChangeText={(text) => this.setState({ nome: text })}
+                    placeholder="Nome do produto"
+                    value={this.state.nome}
+                />
+
+                <TextInput
+                    style={styles.inputStyle}
+                    onChangeText={(text) => this.setState({ cidade: text })}
+                    placeholder="Cidade"
+                    value={this.state.cidade}
+                />
+
+                <TextInput
+                    style={styles.inputStyle}
+                    onChangeText={(text) => this.setState({ endereco: text })}
+                    placeholder="Endereço"
+                    value={this.state.endereco}
+                />
+
+                <TextInput
+                    style={styles.inputStyle}
+                    onChangeText={(text) => this.setState({ telefone: text })}
+                    placeholder="Telefone"
+                    value={this.state.telefone}
+                />
+
+                <TextInput
+                    style={styles.inputStyle}
+                    onChangeText={(text) => this.setState({ abertura: text })}
+                    placeholder="Abertura"
+                    value={this.state.abertura}
+                />
+
+                <TextInput
+                    style={styles.inputStyle}
+                    onChangeText={(text) => this.setState({ fechamento: text })}
+                    placeholder="Fechamento"
+                    value={this.state.fechamento}
+                />
+
+
+                <TouchableOpacity onPress={() => this.askRegisterPlace()} style={styles.registerButton} >
+                    <Text style={styles.buttonText}>Cadastrar</Text>
+                </TouchableOpacity> */}
             </View>
         );
     }
+
 
     abrirDashboard() {
         Actions.dashboard();
@@ -57,6 +103,63 @@ export default class Dashboard extends Component<Props> {
             .catch(function (error) {
                 // An error happened
             });
+    }
+
+    askRegisterPlace() {
+        Alert.alert(
+            'Registrar Local',
+            'Confirma o seu registo do local?',
+            [
+                { text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                {
+                    text: 'OK', onPress: () =>
+                        this.registerPlace()
+                },
+            ],
+            { cancelable: false }
+        )
+    }
+
+    registerPlace() {
+        const placeData = {
+            nome: this.state.nome,
+            cidade: this.state.cidade,
+            endereco: this.state.endereco,
+            telefone: this.state.telefone,
+            abertura: this.state.abertura,
+            fechamento: this.state.fechamento
+        }
+        firebase.database().ref("Places/")
+        .push(placeData)
+        .then((snapshot) => {
+            const placeId = snapshot.key;
+            firebase.database().ref("Places/"+placeId)
+            .update({
+                uid: placeId
+            })
+            Alert.alert("Sucesso", "Local criado!");
+        })
+    }
+
+    confirmRegister() {
+        const userData = {
+            nome: this.state.nome,
+            email: this.state.email,
+            cidade: this.state.cidade,
+            telefone: this.state.telefone,
+            idade: this.state.idade,
+            altura: 170,
+        }
+        firebase.database().ref("Shops/").push(userData)
+            .then((snapshot) => {
+                Alert.alert("Sucesso!", "Usuário criado");
+                Actions.pop();
+            })
+            .catch((error) => {
+                console.log("Error: ", error);
+                Alert.alert("Errou na persistência!", error.code)
+            })
+
     }
 
 }

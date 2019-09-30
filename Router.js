@@ -7,7 +7,9 @@ import Login from "./src/screens/Login";
 import Cadastro from "./src/screens/Cadastro";
 import Dashboard from "./src/screens/Dashboard";
 import Rota from "./src/screens/Rota";
+import Produtos from "./src/screens/Produtos";
 import CadastroProdutos from "./src/screens/CadastroProdutos";
+import ListaProdutos from "./src/screens/ListaProdutos";
 
 console.disableYellowBox = true;
 console.ignoredYellowBox = [' Configurando um timer ']
@@ -27,9 +29,11 @@ class RouterComponent extends Component {
 						<Scene key="auth" initial hideNavBar>
 							<Scene key="login" component={Login} />
 							<Scene key="cadastro" component={Cadastro} />
-							<Scene key="dashboard" component={Dashboard}  initial />
+							<Scene key="dashboard" component={Dashboard}  />
 							<Scene key="rota" component={Rota} />
+							<Scene key="produtos" component={Produtos} initial  />
 							<Scene key="cadastroProdutos" component={CadastroProdutos} />
+							<Scene key="listaProdutos" component={ListaProdutos} />
 
 						</Scene>
 					</Scene>

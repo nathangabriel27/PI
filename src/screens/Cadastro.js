@@ -9,7 +9,7 @@ console.disableYellowBox = true;
 console.ignoredYellowBox = [' Configurando um timer ']
 
 
-export default class Login extends Component<Props> {
+export default class Cadastro extends Component<Props> {
 
   constructor(props) {
     super(props);
