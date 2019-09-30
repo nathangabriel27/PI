@@ -4,13 +4,13 @@ import { Actions } from 'react-native-router-flux';
 import firebase from "firebase";
 import MapView, { Marker } from 'react-native-maps';
 import GeoCoder from 'react-native-geocoding';
-import Search from '../Serarch';
 import Direction from '../Directions';
 import Directions from '../Directions';
 import { getPixelSize } from '../utils';
 import markerImage from "../../../../assets/marker.png";
 import { LocationBox, LocationText, LocationTimeBox, LocationTimeText, LocationTimeTextSmall } from './styles';
 import Geocoder from 'react-native-geocoding';
+import Search from "../Search";
 
 Geocoder.init('AIzaSyB8H6wnED0kHxo5dDOeFqwIh1I6bc30BVk');
 
@@ -52,6 +52,8 @@ export default class Map extends Component {
                     showsUserLocation
                     loadingEnabled
                 />
+
+                <Search />
             </View>
         );
     }
