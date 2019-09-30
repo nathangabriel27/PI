@@ -18,6 +18,9 @@ const instructions = Platform.select({
     'Texto Android',
 });
 
+
+//fdsfgseg
+
 type Props = {};
 export default class App extends Component<Props> {
 
