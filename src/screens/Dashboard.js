@@ -26,15 +26,31 @@ export default class Dashboard extends Component<Props> {
 
         <Text style={styles.welcome}>Welcome to React Native! Dashboard</Text>
 
+        <TouchableOpacity onPress={() => this.cadastroProdutos()} style={styles.loginButton} >
+          <Text style={styles.buttonText}>Cadastro de Produtos</Text>
+        </TouchableOpacity>
+
+
+        <TouchableOpacity onPress={() => this.abrirRota()} style={styles.loginButton} >
+          <Text style={styles.buttonText}>Abrir tela  de rota</Text>
+        </TouchableOpacity>
+
         <TouchableOpacity onPress={() => this.logout()} style={styles.loginButton} >
           <Text style={styles.buttonText}>Logout</Text>
         </TouchableOpacity>
 
 
 
-
       </View>
     );
+  }
+
+  abrirRota() {
+    Actions.rota();
+  }
+
+  cadastroProdutos() {
+    Actions.cadastroProdutos();
   }
 
   logout(){
