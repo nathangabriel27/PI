@@ -12,7 +12,8 @@ export const LocationBox = styled.View`
     border-radius: 3px;
     flex-direction: row;
 
-    ${Platform.select({
+    `
+/*     ${Platform.select({
         ios: css`
             margin-top: 20px;
         `,
@@ -20,8 +21,8 @@ export const LocationBox = styled.View`
             margin-top: 10px;
             margin-left: 10px;
         `,
-    })}
-`;
+    })} */
+;
 
 export const LocationText = styled.Text`
     margin: 8px 10px;
