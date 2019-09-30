@@ -8,7 +8,7 @@ import Search from '../Serarch';
 import Direction from '../Directions';
 import Directions from '../Directions';
 import { getPixelSize } from '../utils';
-import markerImage from '../../../../assets/marker.png';
+import markerImage from "../../../../assets/marker.png";
 import { LocationBox, LocationText, LocationTimeBox, LocationTimeText, LocationTimeTextSmall } from './styles';
 import Geocoder from 'react-native-geocoding';
 

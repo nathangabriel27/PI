@@ -4,7 +4,7 @@ import { Actions } from 'react-native-router-flux';
 import { GooglePlacesAutoComplete } from 'react-native-google-places-autocomplete';
 import firebase from "firebase";
 
-import { View } from 'react-native';
+//import { View } from 'react-native';
 
 export default class Search extends Component {
     state = {
