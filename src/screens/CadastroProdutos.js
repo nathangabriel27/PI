@@ -19,16 +19,18 @@ export default class CadastroProdutos extends Component<Props> {
    
      } */
 
+     
+     
+     render() {
+         return (
+             <View style={styles.container}>
 
-
-    render() {
-        return (
-            <View style={styles.container}>
-{/*                 <TouchableOpacity onPress={() => this.backToDashboard()} style={styles.backButton} >
-                    <Text style={styles.buttonText}>Voltar para Dashboard</Text>
+             {/*   
+                <TouchableOpacity onPress={() => this.voltaTela()} style={styles.backButton} >
+                    <Text style={styles.buttonText}>Voltar</Text>
                 </TouchableOpacity>
 
-                <Text style={styles.titleText}>Cadastro de Local 2</Text>
+                <Text style={styles.titleText}>Cadastro de Produtos</Text>
 
 
                 <TextInput
@@ -40,9 +42,9 @@ export default class CadastroProdutos extends Component<Props> {
 
                 <TextInput
                     style={styles.inputStyle}
-                    onChangeText={(text) => this.setState({ cidade: text })}
-                    placeholder="Cidade"
-                    value={this.state.cidade}
+                    onChangeText={(text) => this.setState({ tipoCarga: text })}
+                    placeholder="Tipo De Carga"
+                    value={this.state.tipoCarga}
                 />
 
                 <TextInput
@@ -81,6 +83,9 @@ export default class CadastroProdutos extends Component<Props> {
         );
     }
 
+    voltaTela() {
+        Actions.pop()
+    }
 
     abrirDashboard() {
         Actions.dashboard();
@@ -130,15 +135,15 @@ export default class CadastroProdutos extends Component<Props> {
             fechamento: this.state.fechamento
         }
         firebase.database().ref("Places/")
-        .push(placeData)
-        .then((snapshot) => {
-            const placeId = snapshot.key;
-            firebase.database().ref("Places/"+placeId)
-            .update({
-                uid: placeId
+            .push(placeData)
+            .then((snapshot) => {
+                const placeId = snapshot.key;
+                firebase.database().ref("Places/" + placeId)
+                    .update({
+                        uid: placeId
+                    })
+                Alert.alert("Sucesso", "Local criado!");
             })
-            Alert.alert("Sucesso", "Local criado!");
-        })
     }
 
     confirmRegister() {
