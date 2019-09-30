@@ -13,8 +13,8 @@ export default class Login extends Component<Props> {
     this.state = {
       deviceWidth: width,
       deviceHeight: height,
-      email: "",
-      password: ""
+      email: "nathangabriel27@gmail.com",
+      senha: "semsenha"
     };
   }
 
@@ -40,16 +40,17 @@ export default class Login extends Component<Props> {
           <Icon style={styles.icon} name='lock' />
           <TextInput
             style={styles.inputStyle}
-            onChangeText={(text) => this.setState({ password: text })}
+            onChangeText={(text) => this.setState({ senha: text })}
             placeholder="Senha aqui"
             secureTextEntry
-            value={this.state.password}
+            value={this.state.senha}
           />
 
         </View>
 
         <TouchableOpacity onPress={() => this.loginUser(this.state.email, this.state.senha)} style={styles.loginButton} >
           <Text style={styles.buttonText}>Login</Text>
+
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => this.esqueciMinhaSenha()} style={styles.forgotButton} >
@@ -72,6 +73,7 @@ export default class Login extends Component<Props> {
 
   loginUser(email, password) {
     //Alert.alert("Confirmar dados", "Verifique se os dados estão corretos.\nEmail: " + email + "\nSenha: "+ password);
+    console.log("tentando fazrlogin");
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((dadosUsuario) => {
         //Alert.alert("Sucesso!");

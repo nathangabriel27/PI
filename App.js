@@ -29,18 +29,18 @@ export default class App extends Component<Props> {
       deviceHeight: height
     };
   }
-
+ 
 
   componentWillMount() {
     //Posso Fazer qualquer tipo de configuração global aqui como por exemplo o Firebase
     if (firebase.apps.length === 0) {
       firebase.initializeApp({
         /*
-        Firebase do cabaço
+        Firebase do Nathans
         apiKey: "AIzaSyDgaCFXCapkNEC4daieScKGIRCTbouWxuM",
         authDomain: "doc-pi.firebaseapp.com",
         databaseURL: "https://doc-pi.firebaseio.com",
-        projectId: "doc-pi",
+        projectId: "doc-pi", 
         storageBucket: "",
         messagingSenderId: "784412510062",
         appId: "1:784412510062:web:234500d8917c637c7fe37f",
@@ -64,17 +64,6 @@ export default class App extends Component<Props> {
     );
   }
 
-  openAskCadastro() {
-    Alert.alert(
-      'Cadastrar',
-      'Você quer mesmo se cadastrar?',
-      [
-        { text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-        { text: 'OK', onPress: () => this.openSimpleAlert() },
-      ],
-      { cancelable: false }
-    )
-  }
 }
 
 

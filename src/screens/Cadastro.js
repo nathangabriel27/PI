@@ -118,7 +118,7 @@ export default class Login extends Component<Props> {
           Alert.alert("Opa!", "Email ou senha de usuario esta invalido, tente novamente");
         } else {
           if (error.code == "auth/weak-password") {
-            console.log(error);
+            console.log(error); 
             Alert.alert("Quaaaaaseee....  ", "Sua senha tem que ter pelo menos 6 caracteres, Tente novamente ");
           } else {
             if (error.code == "auth/email-already-in-use") {
@@ -142,6 +142,7 @@ export default class Login extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor:'#f5c91b', 
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
