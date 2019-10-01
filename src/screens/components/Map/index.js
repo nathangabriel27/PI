@@ -1,38 +1,26 @@
-import React, { Component, Fragment } from 'react';
-import { Platform, StyleSheet, Text, View, TouchableOpacity, Alert, Image, Dimensions, TextInput } from 'react-native';
-import { Actions } from 'react-native-router-flux';
-import firebase from "firebase";
-import MapView, { Marker } from 'react-native-maps';
-import GeoCoder from 'react-native-geocoding';
-import Direction from '../Directions';
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import MapView from 'react-native-maps';
+import Search from '../Search';
 import Directions from '../Directions';
-import { getPixelSize } from '../utils';
-import markerImage from "../../../../assets/marker.png";
-import { LocationBox, LocationText, LocationTimeBox, LocationTimeText, LocationTimeTextSmall } from './styles';
-import Geocoder from 'react-native-geocoding';
-import Search from "../Search";
-
-Geocoder.init('AIzaSyB8H6wnED0kHxo5dDOeFqwIh1I6bc30BVk');
 
 export default class Map extends Component {
-
     state = {
         region: null,
+        destination: null,
     };
 
-    async componentDidMount(){
+    async componentDidMount() {
         navigator.geolocation.getCurrentPosition(
-            ({ coords: { latitude, longitude } }) => {
+            ({ coords: {latitude, longitude } }) => {
                 this.setState({ 
-                    region: {
-                        latitude, 
-                        longitude,   
-                        latitudeDelta: 0.0143,
-                        longitudeDelta: 0.0134
-                    }
-                })
-            }, //SUCESSO
-            () => {}, //ERRO
+                    latitude,
+                    longitude,
+                    latitudeDelta: 0.0143,
+                    longitudeDelta: 0.0134,
+                 })
+            }, //sucesso
+            () => {}, //erro
             {
                 timeout: 2000,
                 enableHighAccuracy: true,
@@ -41,19 +29,40 @@ export default class Map extends Component {
         )
     }
 
+    handleLocationSelected = (data, { geometry }) => {
+        const { location: { lat: latitude, lng: longitude } } = geometry;
+
+        this.setState({
+            destination: {
+                latitude,
+                longitude,
+                title: data.structured_formatting.main_text,
+            },
+        })
+    }
+
     render() {
-        const { region } = this.state;
+
+        const { region, destination } = this.state;
 
         return (
             <View style={{ flex: 1 }}>
                 <MapView
                     style={{ flex: 1 }}
-                    region={{ region }}
+                    region={region}
                     showsUserLocation
                     loadingEnabled
-                />
+                >
+                    { destination && (
+                        <Directions
+                            origin={region}
+                            destination={destination}
+                            onReady={() => {}}
+                        />
+                    )}
+                </MapView>
 
-                <Search />
+                <Search onLocationSelected={this.handleLocationSelected}/>
             </View>
         );
     }
