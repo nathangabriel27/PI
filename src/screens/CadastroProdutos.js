@@ -25,7 +25,6 @@ export default class CadastroProdutos extends Component<Props> {
          return (
              <View style={styles.container}>
 
-             {/*   
                 <TouchableOpacity onPress={() => this.voltaTela()} style={styles.backButton} >
                     <Text style={styles.buttonText}>Voltar</Text>
                 </TouchableOpacity>
@@ -38,14 +37,15 @@ export default class CadastroProdutos extends Component<Props> {
                     onChangeText={(text) => this.setState({ nome: text })}
                     placeholder="Nome do produto"
                     value={this.state.nome}
-                />
+                    />
 
+{/*   
                 <TextInput
                     style={styles.inputStyle}
                     onChangeText={(text) => this.setState({ tipoCarga: text })}
                     placeholder="Tipo De Carga"
                     value={this.state.tipoCarga}
-                />
+                    />
 
                 <TextInput
                     style={styles.inputStyle}
