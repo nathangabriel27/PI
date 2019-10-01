@@ -22,15 +22,18 @@ export default class Login extends Component<Props> {
     return (
       <View style={styles.container}>
 
-        <Text style={styles.titleText}>PI = 3,14 </Text>
+        <Text style={styles.titleText}>PiTruck</Text>
 
+        <Text style={styles.textSubtitulo}> Logue em sua conta. </Text>
+       
         <View style={styles.viewInput}>
+
 
           <Icon style={styles.icon} name='person' />
           <TextInput
             style={styles.inputStyle}
             onChangeText={(text) => this.setState({ email: text })}
-            placeholder="Ex: fulano@gmail.com"
+            placeholder="Email fulano@gmail.com"
             value={this.state.email}
           />
 
@@ -49,16 +52,17 @@ export default class Login extends Component<Props> {
         </View>
 
         <TouchableOpacity onPress={() => this.loginUser(this.state.email, this.state.senha)} style={styles.loginButton} >
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText}>Acessar</Text>
 
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => this.esqueciMinhaSenha()} style={styles.forgotButton} >
-          <Text style={styles.forgotText}>Esqueci minha senha</Text>
+          <Text style={styles.forgotText}>Esqueceu a senha ?</Text>
         </TouchableOpacity>
 
+        <Text style={styles.buttonText}>Não é menbro ainda ?</Text>
         <TouchableOpacity onPress={() => this.abrirCadastro()} style={styles.askButton} >
-          <Text style={styles.buttonText}>Cadastro</Text>
+          <Text style={styles.buttonText}>Cadastre - se </Text>
         </TouchableOpacity>
 
       </View>
@@ -139,7 +143,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#90caf9',
   },
   mainButton: {
     backgroundColor: "#4f8942",
@@ -167,7 +171,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   loginButton: {
-    backgroundColor: "#23541b",
+    backgroundColor: "#50c878",
     borderRadius: 10,
     padding: 10,
     margin: 20,
@@ -186,7 +190,7 @@ const styles = StyleSheet.create({
     color: "white"
   },
   forgotText: {
-    color: "blue",
+    color: "#ffffff",
     textDecorationLine: "underline"
   },
   welcomeText: {
@@ -233,6 +237,10 @@ const styles = StyleSheet.create({
     margin: 20,
     flexDirection: 'row',
     alignItems: "center"
+  },
+  textSubtitulo: {
+    color: '#ffffff',
+    fontSize: 20,
   },
 
 });
