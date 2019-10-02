@@ -22,7 +22,7 @@ import {
   LocationTimeTextSmall
 } from "./styles";
 
-Geocoder.init("AIzaSyB1O8amubeMkw_7ok2jUhtVj9IkME9K8sc");
+Geocoder.init("AIzaSyA38fkJWIYW2Gxq-slMrHHlxgK-UgEjY8Y");
 
 export default class Map extends Component {
   state = {
@@ -96,7 +96,7 @@ export default class Map extends Component {
                 onReady={result => {
                   this.setState({ duration: Math.floor(result.duration) });
 
-                  this.mapView.fitToCoordinates(result.coordinates, {
+                  this.mapView.fitToCoordinates(result.coordinate, {
                     edgePadding: {
                       right: getPixelSize(50),
                       left: getPixelSize(50),
