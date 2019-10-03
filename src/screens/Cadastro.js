@@ -41,8 +41,7 @@ export default class Cadastro extends Component<Props> {
 
       <View style={styles.container}>
         <ScrollView>
-      
-
+          
           <TouchableOpacity onPress={() => this.voltaLogin()} style={styles.backButton} >
             <Text style={styles.buttonText}>Voltar para Login</Text>
           </TouchableOpacity>
@@ -70,8 +69,6 @@ export default class Cadastro extends Component<Props> {
             secureTextEntry
             value={this.state.password}
           />
-
-
 
           <TouchableOpacity onPress={() => this.desejaRegistra()} style={styles.registerButton} >
             <Text style={styles.buttonText}>Cadastrar</Text>
@@ -131,33 +128,33 @@ export default class Cadastro extends Component<Props> {
               console.log(error);
               Alert.alert(error.code, 'teste')
             }
-
-
           }
-
         }
       });
   }
-
 }
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#90CAF9',
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'space-evenly'
   },
+
   welcome: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
   },
+
   instructions: {
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
   },
+
   backButton: {
     backgroundColor: "#039BE5",
     borderRadius: 10,
@@ -180,9 +177,11 @@ const styles = StyleSheet.create({
     width: width * 0.8,
     alignItems: 'center'
   },
+
   buttonText: {
     color: "white"
   },
+
   inputStyle: {
     height: height * 0.06,
     width: width * 0.85,
@@ -190,6 +189,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     margin: width * 0.04
   },
+
   titleText: {
     fontSize: 30,
     alignItems: 'center',

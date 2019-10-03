@@ -15,16 +15,12 @@ export default class Dashboard extends Component<Props> {
     };
   }
 
-  /*  componentDidMount() {
- 
-   } */
-
   render() {
     return (
 
       <View style={styles.container}>
 
-        <Text style={styles.welcome}>Welcome to React Native! Dashboard</Text>
+        <Image style={styles.iconTruck} source={require('../../assets/icon.png')} />
 
         <TouchableOpacity onPress={() => this.abriProdutos()} style={styles.loginButton} >
           <Text style={styles.buttonText}>Produtos</Text>
@@ -57,15 +53,15 @@ export default class Dashboard extends Component<Props> {
     Actions.cadastroProdutos();
   }
 
-  logout(){
+  logout() {
     firebase.auth().signOut()
-    .then(function() {
-      // Sign-out successful.
-      Actions.login();
-    })
-    .catch(function(error) {
-      // An error happened
-    });
+      .then(function () {
+        // Sign-out successful.
+        Actions.login();
+      })
+      .catch(function (error) {
+        // An error happened
+      });
   }
 
 }
@@ -118,7 +114,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
     color: "#039BE5"
-    
+
   },
   loginButton: {
     backgroundColor: "#23541b",
@@ -127,6 +123,11 @@ const styles = StyleSheet.create({
     margin: 20,
     width: width * 0.5,
     alignItems: 'center'
+  },
+
+  iconTruck: {
+    width: 78,
+    height: 56,
   },
 
 });

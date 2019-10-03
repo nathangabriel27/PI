@@ -24,20 +24,7 @@ export default class Login extends Component<Props> {
 
       <View style={{ flex: 1, flexDirection: 'column' }} >
 
-        <View style={{
-          widht: '100%',
-          height: '80%',
-          shadowColor: "#000",
-          shadowOffset: {
-            width: 0,
-            height: 6,
-          },
-          shadowOpacity: 2,
-          shadowRadius: 8.30,
-
-          elevation: 13,
-        }}
-        >
+        <View style={{ width: '100%', height: '80%' }} >
 
           <View style={styles.container}>
             <Image style={styles.iconTruck} source={require('../../assets/icon.png')} />
@@ -52,7 +39,7 @@ export default class Login extends Component<Props> {
                 style={styles.inputStyle}
                 onChangeText={(text) => this.setState({ email: text })}
                 placeholder="seu email"
-                placeholderTextColor='white'
+                placeholderTextColor='#222'
                 value={this.state.email}
               />
 
@@ -64,7 +51,7 @@ export default class Login extends Component<Props> {
                 style={styles.inputStyle}
                 onChangeText={(text) => this.setState({ senha: text })}
                 placeholder="sua senha"
-                placeholderTextColor='white'
+                placeholderTextColor='#222'
                 secureTextEntry
                 value={this.state.senha}
               />
@@ -79,15 +66,21 @@ export default class Login extends Component<Props> {
               <Text style={styles.forgotText}>Esqueceu a senha ?</Text>
             </TouchableOpacity>
           </View>
+          
+          <View style={{ widht: '100%', height: '0.3%', backgroundColor: '#696969'}} ></View>
+          <View style={{ widht: '100%', height: '0.3%', backgroundColor: '##A9A9A9'}} ></View>
+          <View style={{ widht: '100%', height: '0.3%', backgroundColor: '#808080'}} ></View>
+
+
         </View>
 
-        <View style={{ widht: '100%', height: '20%', backgroundColor: '#75C1FF', justifyContent: 'center' }} >
+        <View style={{ widht: '100%', height: '19%', backgroundColor: '#FFF', justifyContent: 'center' }} >
 
           <TouchableOpacity style={styles.forgtButton} >
-            <Text style={styles.forgtText}>Não é menbro ainda?</Text>
+            <Text style={styles.forgtText}>Não é membro ainda?</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => this.abrirCadastro()} style={styles.askButton} >
+          <TouchableOpacity onPress={() => this.abrirPreCadastro()} style={styles.askButton} >
             <Text style={styles.buttonText}>Cadastre - se </Text>
           </TouchableOpacity>
 
@@ -99,8 +92,8 @@ export default class Login extends Component<Props> {
   }// fim do render  
 
 
-  abrirCadastro() {
-    Actions.cadastro();
+  abrirPreCadastro() {
+    Actions.preCadastro();
   }
 
 
@@ -167,32 +160,42 @@ export default class Login extends Component<Props> {
 
 }
 
+
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#90caf9',
+    backgroundColor: '#008B8B',
   },
+
+
   mainButton: {
     backgroundColor: "#4f8942",
   },
+
   textButton: {
     color: "white",
     margin: 20
   },
+
   welcome: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
   },
+
   instructions: {
     textAlign: 'center',
     color: 'red',
     marginBottom: 5,
   },
+
   askButton: {
-    backgroundColor: "#039BE5",
+    backgroundColor: "#008B8B",
+    borderWidth: 0.5,
+    borderColor: '#222',
     borderRadius: 10,
     marginBottom: 10,
     padding: 10,
@@ -200,17 +203,20 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginTop: 0,
     marginBottom: 40,
-    // width: width * 0.9,
     alignItems: 'center'
   },
+
   loginButton: {
-    backgroundColor: "#50c878",
+    backgroundColor: "#66CDAA",
     borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: '#222',
     padding: 10,
     margin: 20,
     width: width * 0.8,
     alignItems: 'center'
   },
+
   forgotButton: {
     backgroundColor: "transparent",
     borderRadius: 10,
@@ -232,13 +238,14 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white"
   },
+
   forgotText: {
-    color: "#ffffff",
+    color: "#222",
     textDecorationLine: "underline"
   },
 
   forgtText: {
-    color: "#ffffff",
+    color: "#008B8B",
     fontWeight: 'bold',
   },
 
@@ -248,18 +255,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     textAlign: 'center'
   },
+
   logoStyle: {
     width: width * 0.55,
     height: width * 0.55
   },
+
   titleText: {
     marginTop: 20,
     fontWeight: 'bold',
     fontSize: 30,
     alignItems: 'center',
     textAlign: 'center',
-    color: "#005796"
+    color: "#00FFFF",
   },
+
   meuBotao: {
     backgroundColor: 'green',
     width: width * 0.8,
@@ -268,11 +278,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10
   },
+
   estiloTexto: {
     color: '#ffffff',
     textAlign: 'center',
     alignItems: 'center'
   },
+
   inputStyle: {
     height: height * 0.06,
     width: width * 0.85,
@@ -280,15 +292,18 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     margin: width * 0.04
   },
+
   icon: {
     top: 8,
     left: 10,
   },
+
   viewInput: {
     margin: 20,
     flexDirection: 'row',
     alignItems: "center"
   },
+
   textSubtitulo: {
     marginTop: 15,
     color: '#ffffff',

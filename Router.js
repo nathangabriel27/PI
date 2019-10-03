@@ -5,6 +5,7 @@ import { Scene, Router } from "react-native-router-flux";
 
 import Login from "./src/screens/Login";
 import Cadastro from "./src/screens/Cadastro";
+import PreCadastro from "./src/screens/PreCadastro";
 import Dashboard from "./src/screens/Dashboard";
 import Rota from "./src/screens/Rota";
 import Produtos from "./src/screens/Produtos";
@@ -27,9 +28,10 @@ class RouterComponent extends Component {
 				<Router>
 					<Scene key="app">
 						<Scene key="auth" initial hideNavBar>
-							<Scene key="login" component={Login}  initial />
+							<Scene key="login" component={Login} initial />
+							<Scene key="preCadastro" component={PreCadastro}  />
 							<Scene key="cadastro" component={Cadastro} />
-							<Scene key="dashboard" component={Dashboard}  />
+							<Scene key="dashboard" component={Dashboard} />
 							<Scene key="rota" component={Rota} />
 							<Scene key="produtos" component={Produtos}  />
 							<Scene key="cadastroProdutos" component={CadastroProdutos} />
