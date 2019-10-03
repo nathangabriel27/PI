@@ -12,18 +12,14 @@ export default class CadastroProdutos extends Component<Props> {
         this.state = {
             deviceWidth: width,
             deviceHeight: height,
+            nome: "",
+            tipo: "",
         };
     }
 
-    /*  componentDidMount() {
-   
-     } */
-
-     
-     
-     render() {
-         return (
-             <View style={styles.container}>
+    render() {
+        return (
+            <View style={styles.container}>
 
                 <TouchableOpacity onPress={() => this.voltaTela()} style={styles.backButton} >
                     <Text style={styles.buttonText}>Voltar</Text>
@@ -37,77 +33,55 @@ export default class CadastroProdutos extends Component<Props> {
                     onChangeText={(text) => this.setState({ nome: text })}
                     placeholder="Nome do produto"
                     value={this.state.nome}
-                    />
-
-{/*   
+                />
                 <TextInput
                     style={styles.inputStyle}
-                    onChangeText={(text) => this.setState({ tipoCarga: text })}
-                    placeholder="Tipo De Carga"
-                    value={this.state.tipoCarga}
-                    />
-
-                <TextInput
-                    style={styles.inputStyle}
-                    onChangeText={(text) => this.setState({ endereco: text })}
-                    placeholder="Endereço"
-                    value={this.state.endereco}
+                    onChangeText={(text) => this.setState({ tipo: text })}
+                    placeholder="Tipo de produto"
+                    value={this.state.tipo}
                 />
 
-                <TextInput
-                    style={styles.inputStyle}
-                    onChangeText={(text) => this.setState({ telefone: text })}
-                    placeholder="Telefone"
-                    value={this.state.telefone}
-                />
-
-                <TextInput
-                    style={styles.inputStyle}
-                    onChangeText={(text) => this.setState({ abertura: text })}
-                    placeholder="Abertura"
-                    value={this.state.abertura}
-                />
-
-                <TextInput
-                    style={styles.inputStyle}
-                    onChangeText={(text) => this.setState({ fechamento: text })}
-                    placeholder="Fechamento"
-                    value={this.state.fechamento}
-                />
-
-
-                <TouchableOpacity onPress={() => this.askRegisterPlace()} style={styles.registerButton} >
+                <TouchableOpacity onPress={() => this.cadastroProduto()} style={styles.registerButton} >
                     <Text style={styles.buttonText}>Cadastrar</Text>
-                </TouchableOpacity> */}
+                </TouchableOpacity>
             </View>
         );
     }
-
-    voltaTela() {
-        Actions.pop()
+    cadastroProduto() {
+        Alert.alert(
+            'Cadastrar produto',
+            'Confirma o seu cadastrar do produto?',
+            [
+                { text: 'Cancelar e corrigir', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                {
+                    text: 'sim', onPress: () =>
+                        this.registraProduto()
+                },
+            ],
+            { cancelable: false }
+        )
     }
 
-    abrirDashboard() {
-        Actions.dashboard();
-    }
+    registraProduto() {
+        const placeData = {
+            nome: this.state.nome,
+            tipo: this.state.tipo,
+            /*  endereco: this.state.endereco,
+             telefone: this.state.telefone,
+             abertura: this.state.abertura,
+             fechamento: this.state.fechamento */
+        }
 
-    abrirRota() {
-        Actions.rota();
-    }
-
-    cadastroProdutos() {
-        Actions.rota();
-    }
-
-    logout() {
-        firebase.auth().signOut()
-            .then(function () {
-                // Sign-out successful.
-                Actions.login();
+        firebase.database().ref("Users/UsersPeople/Produtos/")
+            .push(placeData)
+            .then((snapshot) => {
+                const placeId = snapshot.key;
+                firebase.database().ref("PlaUsers/UsersPeople/Produtos/" + placeId)
+                    .update({
+                        uid: placeId
+                    })
+                Alert.alert("Sucesso", "produto cadastrado!");
             })
-            .catch(function (error) {
-                // An error happened
-            });
     }
 
     askRegisterPlace() {
@@ -125,46 +99,21 @@ export default class CadastroProdutos extends Component<Props> {
         )
     }
 
-    registerPlace() {
-        const placeData = {
-            nome: this.state.nome,
-            cidade: this.state.cidade,
-            endereco: this.state.endereco,
-            telefone: this.state.telefone,
-            abertura: this.state.abertura,
-            fechamento: this.state.fechamento
-        }
-        firebase.database().ref("Places/")
-            .push(placeData)
-            .then((snapshot) => {
-                const placeId = snapshot.key;
-                firebase.database().ref("Places/" + placeId)
-                    .update({
-                        uid: placeId
-                    })
-                Alert.alert("Sucesso", "Local criado!");
-            })
+
+    voltaTela() {
+        Actions.pop()
     }
 
-    confirmRegister() {
-        const userData = {
-            nome: this.state.nome,
-            email: this.state.email,
-            cidade: this.state.cidade,
-            telefone: this.state.telefone,
-            idade: this.state.idade,
-            altura: 170,
-        }
-        firebase.database().ref("Shops/").push(userData)
-            .then((snapshot) => {
-                Alert.alert("Sucesso!", "Usuário criado");
-                Actions.pop();
-            })
-            .catch((error) => {
-                console.log("Error: ", error);
-                Alert.alert("Errou na persistência!", error.code)
-            })
+    abrirDashboard() {
+        Actions.dashboard();
+    }
 
+    abrirRota() {
+        Actions.rota();
+    }
+
+    cadastroProdutos() {
+        Actions.rota();
     }
 
 }

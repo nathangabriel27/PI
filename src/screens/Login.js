@@ -14,8 +14,8 @@ export default class Login extends Component<Props> {
     this.state = {
       deviceWidth: width,
       deviceHeight: height,
-      email: "",
-      senha: ""
+      email: "nathangabriel27@gmail.com",
+      senha: "semsenha"
     };
   }
 
@@ -71,13 +71,14 @@ export default class Login extends Component<Props> {
 
             </View>
 
+            <TouchableOpacity onPress={() => this.esqueciMinhaSenha()} style={styles.forgotButton} >
+              <Text style={styles.forgotText}>Esqueceu sua senha ?</Text>
+            </TouchableOpacity>
+
             <TouchableOpacity onPress={() => this.loginUser(this.state.email, this.state.senha)} style={styles.loginButton} >
               <Text style={styles.buttonText}>Acessar</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => this.esqueciMinhaSenha()} style={styles.forgotButton} >
-              <Text style={styles.forgotText}>Esqueceu a senha ?</Text>
-            </TouchableOpacity>
           </View>
         </View>
 
@@ -88,7 +89,7 @@ export default class Login extends Component<Props> {
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => this.abrirCadastro()} style={styles.askButton} >
-            <Text style={styles.buttonText}>Cadastre - se </Text>
+            <Text style={styles.buttonText}>Cadastre- se </Text>
           </TouchableOpacity>
 
         </View>
@@ -208,6 +209,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     margin: 20,
+    marginBottom: 10,
     width: width * 0.8,
     alignItems: 'center'
   },
@@ -215,7 +217,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     borderRadius: 10,
     padding: 10,
-    margin: 20,
+    marginTop: 10,
     width: width * 0.8,
     alignItems: 'center'
   },
@@ -296,6 +298,7 @@ const styles = StyleSheet.create({
   },
 
   iconTruck: {
+
     marginTop: 10,
     width: 58,
     height: 56,

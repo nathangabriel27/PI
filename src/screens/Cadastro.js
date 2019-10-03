@@ -17,9 +17,9 @@ export default class Cadastro extends Component<Props> {
     this.state = {
       deviceWidth: width,
       deviceHeight: height,
-      nome: "",
-      email: "",
-      password: "",
+      nome: "Nathan",
+      email: "nathangabriel27@gmail.com",
+      password: "semsenha",
       // cidade: "",
       // endereco: "",
       // telefone: "",
@@ -104,7 +104,7 @@ export default class Cadastro extends Component<Props> {
   registerUser(email, password, nome) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((currentUser) => {
-        firebase.database().ref("Users/" + currentUser.user.uid).update({
+        firebase.database().ref("Users/UsersPeople/" + currentUser.user.uid).update({
           uid: currentUser.user.uid,
           email: email,
           nome: nome,
@@ -131,10 +131,7 @@ export default class Cadastro extends Component<Props> {
               console.log(error);
               Alert.alert(error.code, 'teste')
             }
-
-
           }
-
         }
       });
   }
