@@ -266,10 +266,11 @@ const styles = StyleSheet.create({
   titleText: {
     marginTop: 20,
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 50,
     alignItems: 'center',
     textAlign: 'center',
-    color: "#00FFFF",
+    color: "#FFF",
+    fontStyle: 'italic'
   },
 
   meuBotao: {
@@ -313,7 +314,7 @@ const styles = StyleSheet.create({
   },
 
   iconTruck: {
-
+    fontSize :30,
     marginTop: 10,
     width: 58,
     height: 56,
