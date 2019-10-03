@@ -72,15 +72,20 @@ export default class CadastroProdutos extends Component<Props> {
              fechamento: this.state.fechamento */
         }
 
-        firebase.database().ref("Users/UsersPeople/Produtos/")
+        firebase.database().ref("Users/UsersPeople/9Kh1zlihBJb2yw1TQUj4RqbdQhR2/Produtos")
             .push(placeData)
             .then((snapshot) => {
                 const placeId = snapshot.key;
-                firebase.database().ref("PlaUsers/UsersPeople/Produtos/" + placeId)
+                firebase.database().ref("PlaUsers/UsersPeople/9Kh1zlihBJb2yw1TQUj4RqbdQhR2")
                     .update({
                         uid: placeId
                     })
-                Alert.alert("Sucesso", "produto cadastrado!");
+                Alert.alert("Sucesso", "produto cadastrado!", );
+                console.log("placerID: ",placeId);
+                console.log("placerData: ",placeData);
+                console.log("Snapshot",snapshot);
+                
+                
             })
     }
 
