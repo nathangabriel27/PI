@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, TouchableOpacity, Alert, Image, Dimensions, TextInput, ScrollView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import styled, { css } from "styled-components/native";
 import firebase from "firebase";
 
 var { height, width } = Dimensions.get('window');
@@ -20,10 +21,10 @@ export default class Cadastro extends Component<Props> {
       email: "",
       password: "",
       // cidade: "",
-      //endereco: "",
-      //telefone: "",
-      //abertura: "",
-      //fechamento: ""
+      // endereco: "",
+      // telefone: "",
+      // abertura: "",
+      // fechamento: ""
     };
   }
 
@@ -40,6 +41,7 @@ export default class Cadastro extends Component<Props> {
 
       <View style={styles.container}>
         <ScrollView>
+      
 
           <TouchableOpacity onPress={() => this.voltaLogin()} style={styles.backButton} >
             <Text style={styles.buttonText}>Voltar para Login</Text>
@@ -118,7 +120,7 @@ export default class Cadastro extends Component<Props> {
           Alert.alert("Opa!", "Email ou senha de usuario esta invalido, tente novamente");
         } else {
           if (error.code == "auth/weak-password") {
-            console.log(error); 
+            console.log(error);
             Alert.alert("Quaaaaaseee....  ", "Sua senha tem que ter pelo menos 6 caracteres, Tente novamente ");
           } else {
             if (error.code == "auth/email-already-in-use") {
@@ -139,14 +141,12 @@ export default class Cadastro extends Component<Props> {
 
 }
 
-
 const styles = StyleSheet.create({
   container: {
-    backgroundColor:'#f5c91b', 
+    backgroundColor: '#90CAF9',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
   welcome: {
     fontSize: 20,
@@ -159,12 +159,19 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   backButton: {
-    backgroundColor: "gray",
+    backgroundColor: "#039BE5",
     borderRadius: 10,
+    marginBottom: 10,
     padding: 10,
-    margin: 20,
-    alignSelf: "flex-start"
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 0,
+    marginBottom: 40,
+    alignItems: 'center',
+    alignSelf: "flex-start",
+
   },
+   
   registerButton: {
     backgroundColor: "green",
     borderRadius: 10,

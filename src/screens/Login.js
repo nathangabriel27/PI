@@ -3,6 +3,7 @@ import { Platform, StyleSheet, Text, View, TouchableOpacity, Alert, Image, Dimen
 import { Actions } from 'react-native-router-flux';
 import firebase from "firebase";
 import { Icon } from 'react-native-elements'
+// import {Logo} from '../../assets/icon.png';
 
 var { height, width } = Dimensions.get('window');
 
@@ -20,52 +21,80 @@ export default class Login extends Component<Props> {
 
   render() {
     return (
-      <View style={styles.container}>
 
-        <Text style={styles.titleText}>PiTruck</Text>
+      <View style={{ flex: 1, flexDirection: 'column' }} >
 
-        <Text style={styles.textSubtitulo}> Logue em sua conta. </Text>
-       
-        <View style={styles.viewInput}>
+        <View style={{
+          widht: '100%',
+          height: '80%',
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 6,
+          },
+          shadowOpacity: 2,
+          shadowRadius: 8.30,
+
+          elevation: 13,
+        }}
+        >
+
+          <View style={styles.container}>
+            <Image style={styles.iconTruck} source={require('../../assets/icon.png')} />
+
+            <Text style={styles.titleText}>PiTruck</Text>
+
+            <View style={styles.viewInput}>
 
 
-          <Icon style={styles.icon} name='person' />
-          <TextInput
-            style={styles.inputStyle}
-            onChangeText={(text) => this.setState({ email: text })}
-            placeholder="Email fulano@gmail.com"
-            value={this.state.email}
-          />
+              <Icon style={styles.icon} name='person' />
+              <TextInput
+                style={styles.inputStyle}
+                onChangeText={(text) => this.setState({ email: text })}
+                placeholder="seu email"
+                placeholderTextColor='white'
+                value={this.state.email}
+              />
+
+            </View>
+            <View style={styles.viewInput} >
+
+              <Icon style={styles.icon} name='lock' />
+              <TextInput
+                style={styles.inputStyle}
+                onChangeText={(text) => this.setState({ senha: text })}
+                placeholder="sua senha"
+                placeholderTextColor='white'
+                secureTextEntry
+                value={this.state.senha}
+              />
+
+            </View>
+
+            <TouchableOpacity onPress={() => this.loginUser(this.state.email, this.state.senha)} style={styles.loginButton} >
+              <Text style={styles.buttonText}>Acessar</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => this.esqueciMinhaSenha()} style={styles.forgotButton} >
+              <Text style={styles.forgotText}>Esqueceu a senha ?</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={{ widht: '100%', height: '20%', backgroundColor: '#75C1FF', justifyContent: 'center' }} >
+
+          <TouchableOpacity style={styles.forgtButton} >
+            <Text style={styles.forgtText}>Não é menbro ainda?</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => this.abrirCadastro()} style={styles.askButton} >
+            <Text style={styles.buttonText}>Cadastre - se </Text>
+          </TouchableOpacity>
 
         </View>
-        <View style={styles.viewInput} >
-
-          <Icon style={styles.icon} name='lock' />
-          <TextInput
-            style={styles.inputStyle}
-            onChangeText={(text) => this.setState({ senha: text })}
-            placeholder="Senha aqui"
-            secureTextEntry
-            value={this.state.senha}
-          />
-
-        </View>
-
-        <TouchableOpacity onPress={() => this.loginUser(this.state.email, this.state.senha)} style={styles.loginButton} >
-          <Text style={styles.buttonText}>Acessar</Text>
-
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => this.esqueciMinhaSenha()} style={styles.forgotButton} >
-          <Text style={styles.forgotText}>Esqueceu a senha ?</Text>
-        </TouchableOpacity>
-
-        <Text style={styles.buttonText}>Não é menbro ainda ?</Text>
-        <TouchableOpacity onPress={() => this.abrirCadastro()} style={styles.askButton} >
-          <Text style={styles.buttonText}>Cadastre - se </Text>
-        </TouchableOpacity>
 
       </View>
+
     );
   }// fim do render  
 
@@ -165,9 +194,13 @@ const styles = StyleSheet.create({
   askButton: {
     backgroundColor: "#039BE5",
     borderRadius: 10,
+    marginBottom: 10,
     padding: 10,
-    margin: 20,
-    width: width * 0.8,
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 0,
+    marginBottom: 40,
+    // width: width * 0.9,
     alignItems: 'center'
   },
   loginButton: {
@@ -186,6 +219,16 @@ const styles = StyleSheet.create({
     width: width * 0.8,
     alignItems: 'center'
   },
+
+  forgtButton: {
+    backgroundColor: "transparent",
+    borderRadius: 10,
+    padding: 10,
+    margin: 20,
+    width: width * 0.9,
+    alignItems: 'center'
+  },
+
   buttonText: {
     color: "white"
   },
@@ -193,6 +236,12 @@ const styles = StyleSheet.create({
     color: "#ffffff",
     textDecorationLine: "underline"
   },
+
+  forgtText: {
+    color: "#ffffff",
+    fontWeight: 'bold',
+  },
+
   welcomeText: {
     color: "gray",
     fontSize: 38,
@@ -204,10 +253,12 @@ const styles = StyleSheet.create({
     height: width * 0.55
   },
   titleText: {
+    marginTop: 20,
+    fontWeight: 'bold',
     fontSize: 30,
     alignItems: 'center',
     textAlign: 'center',
-    color: "#039BE5"
+    color: "#005796"
   },
   meuBotao: {
     backgroundColor: 'green',
@@ -239,8 +290,15 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   textSubtitulo: {
+    marginTop: 15,
     color: '#ffffff',
     fontSize: 20,
+  },
+
+  iconTruck: {
+    marginTop: 10,
+    width: 58,
+    height: 56,
   },
 
 });
