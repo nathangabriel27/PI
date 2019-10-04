@@ -17,9 +17,9 @@ export default class Cadastro extends Component<Props> {
     this.state = {
       deviceWidth: width,
       deviceHeight: height,
-      nome: "Nathan",
-      email: "nathangabriel27@gmail.com",
-      password: "semsenha",
+      nome: "",
+      email: "",
+      password: "",
       // cidade: "",
       // endereco: "",
       // telefone: "",
@@ -136,7 +136,7 @@ export default class Cadastro extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#90CAF9',
+    backgroundColor: '#FFF',
     flex: 1,
     // justifyContent: 'center',
     alignItems: 'center',
@@ -156,13 +156,13 @@ const styles = StyleSheet.create({
   },
 
   backButton: {
-    backgroundColor: "#039BE5",
+    backgroundColor: "transparent",
     borderRadius: 10,
     marginBottom: 10,
     padding: 10,
-    marginLeft: 20,
+    marginLeft: 0,
     marginRight: 20,
-    marginTop: 0,
+    marginTop: 25,
     marginBottom: 40,
     alignItems: 'center',
     alignSelf: "flex-start",
@@ -170,31 +170,38 @@ const styles = StyleSheet.create({
   },
    
   registerButton: {
-    backgroundColor: "green",
-    borderRadius: 10,
-    padding: 10,
-    margin: 20,
-    width: width * 0.8,
-    alignItems: 'center'
+        backgroundColor: "#008B8B",
+        borderWidth: 0.5,
+        borderColor: '#222',
+        borderRadius: 10,
+        padding: 10,
+        marginLeft: 20,
+        marginRight: 20,
+        marginTop: 30,
+        alignItems: 'center'
   },
 
   buttonText: {
-    color: "white"
+    color: "#222",
+    textDecorationLine: "underline"
   },
 
   inputStyle: {
     height: height * 0.06,
     width: width * 0.85,
-    borderBottomColor: 'gray',
+    borderBottomColor: '#222',
     borderBottomWidth: 1,
     margin: width * 0.04
   },
 
   titleText: {
-    fontSize: 30,
+    fontSize: 35,
     alignItems: 'center',
     textAlign: 'center',
-    color: "#039BE5"
+    color: "#008B8B",
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    marginBottom: 60,
   }
 
 });

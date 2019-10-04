@@ -68,9 +68,9 @@ export default class Login extends Component<Props> {
 
           </View>
           
-          <View style={{ widht: '100%', height: '0.3%', backgroundColor: '#696969'}} ></View>
-          <View style={{ widht: '100%', height: '0.3%', backgroundColor: '##A9A9A9'}} ></View>
-          <View style={{ widht: '100%', height: '0.3%', backgroundColor: '#808080'}} ></View>
+          <View style={{ widht: '100%', height: '0.3%', backgroundColor: '#222'}} ></View>
+          <View style={{ widht: '100%', height: '0.3%', backgroundColor: 'red'}} ></View>
+          <View style={{ widht: '100%', height: '0.3%', backgroundColor: '#222'}} ></View>
 
 
         </View>
