@@ -96,19 +96,17 @@ const styles = StyleSheet.create({
     },
 
     iconCompany: {
-        marginTop: 15,
+        marginTop: 25,
         marginLeft: 60,
-        width: 58,
-        height: 56,
-        
+        width: 88,
+        height: 86,
     },
 
     iconPleople: {
-        marginTop: 15,
+        marginTop: 25,
         marginLeft: 60,
-        width: 58,
-        height: 56,
-        
+        width: 88,
+        height: 86,
     }, 
 
     transportadoraButton: {
