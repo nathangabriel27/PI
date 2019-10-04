@@ -27,9 +27,10 @@ export default class Cadastro extends Component<Props> {
                         <Text style={styles.textOrientacao}>
                             para garantir o melhor funcionamento do nosso sitema,
                             escolha a baixo o perfil de usário que se adeque melhor ao seu cenário.
-                            {"\n"}{"\n"}
-                            Cliente: Se você deseja enviar produtos para outros lugeres.
-                        {"\n"}{"\n"}
+                            {"\n"}
+
+                            Cliente: Se você deseja enviar produtos para outros slugeres.
+                        {"\n"}
                             Transportadora: Se você que fornecer o serviço de transporte.
                         </Text>
                     </View>
@@ -128,6 +129,7 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         marginRight: 20,
         marginTop: 30,
-        alignItems: 'center'
+        alignItems: 'center',
+
     },
 })
