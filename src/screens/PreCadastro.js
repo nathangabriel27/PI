@@ -16,7 +16,7 @@ export default class Cadastro extends Component<Props> {
     render() {
         return (
             <View style={{ flex: 1, flexDirection: 'column' }} >
-                <View style={{ width: '100%', height: '70%', backgroundColor: '#90CAF9' }} >
+                <View style={{ width: '100%', height: '70%', backgroundColor: '#008B8B' }} >
 
                     <Text style={styles.titleText}>PiTruck</Text>
 
@@ -36,11 +36,11 @@ export default class Cadastro extends Component<Props> {
                     </View>
                 </View>
 
-                <View style={{ width: '100%', height: '30%', backgroundColor: '#75C1FF' }}>
+                <View style={{ width: '100%', height: '30%', backgroundColor: '#FFF' }}>
 
                     <View View style={{ flex: 1, flexDirection: 'row' }} >
 
-                        <View style={{ width: '50%', height: '100%', backgroundColor: '#75C1FF' }}>
+                        <View style={{ width: '50%', height: '100%', backgroundColor: '#FFF' }}>
                             <Image style={styles.iconPleople} source={require('../../assets/pleoples.png')} />
 
                             <TouchableOpacity onPress={() => this.abrirCadastro()} style={styles.transportadoraButton} >
@@ -48,7 +48,7 @@ export default class Cadastro extends Component<Props> {
                             </TouchableOpacity>
                         </View>
 
-                        <View style={{ width: '50%', height: '100%', backgroundColor: '#75C1FF', borderColor: '#222', borderLeftWidth: '0.5' }}>
+                        <View style={{ width: '50%', height: '100%', backgroundColor: '#FFF', borderColor: '#222', borderLeftWidth: '0.5' }}>
                             <Image style={styles.iconCompany} source={require('../../assets/company.png')} />
 
                             <TouchableOpacity onPress={() => this.abrirCadastro()} style={styles.transportadoraButton} >
@@ -63,6 +63,11 @@ export default class Cadastro extends Component<Props> {
             </View>
         );
     }
+
+    abrirCadastro() {
+        Actions.cadastro();
+    }
+
 }
 
 
@@ -71,13 +76,15 @@ const styles = StyleSheet.create({
     titleText: {
         marginTop: 20,
         fontWeight: 'bold',
-        fontSize: 30,
+        fontSize: 50,
         alignItems: 'center',
         textAlign: 'center',
-        color: "#005796"
+        color: "#FFF",
+        fontStyle: 'italic',
     },
 
     viewText: {
+        textAlign: 'justify',
         marginTop: 20,
         marginLeft: 30,
         marginRight: 30,
@@ -105,7 +112,7 @@ const styles = StyleSheet.create({
     }, 
 
     transportadoraButton: {
-        backgroundColor: "#50c878",
+        backgroundColor: "#008B8B",
         borderWidth: 0.5,
         borderColor: '#222',
         borderRadius: 10,
