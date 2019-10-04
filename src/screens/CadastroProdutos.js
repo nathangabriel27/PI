@@ -12,8 +12,10 @@ export default class CadastroProdutos extends Component<Props> {
         this.state = {
             deviceWidth: width,
             deviceHeight: height,
-            nome: "",
-            tipo: "",
+            nome: "Coco",
+            tipo: "Perecivel",
+            uidCreator: "",
+
         };
     }
 
@@ -69,26 +71,31 @@ export default class CadastroProdutos extends Component<Props> {
             { cancelable: false }
         )
     }
-    
-    registraProduto() { 
-        const placeData = {
-            nome: this.state.nome,
-            tipo: this.state.tipo,
-        }
+
+    registraProduto() {
         const { currentUser } = firebase.auth();
         if (currentUser) {
             console.log("Estou logado: ", currentUser.uid)
         }
-        firebase.database().ref(`Users/UsersPeople/${currentUser.uid}/Produtos`)
+        const placeData = {
+            nome: this.state.nome,
+            tipo: this.state.tipo,
+            uidCreator: currentUser.uid
+        }
+        //firebase.database().ref(`Users/UsersPeople/${currentUser.uid}/Produtos`)
+        firebase.database().ref(`Users/Products`)
             .push(placeData)
             .then((snapshot) => {
                 const placeId = snapshot.key;
-                firebase.database().ref(`Users/UsersPeople/${currentUser.uid}/Produtos`)
+                //firebase.database().ref(`Users/UsersPeople/${currentUser.uid}/Produtos`)
+                firebase.database().ref(`Users/Products`)
                     .update({
                         uid: placeId
                     })
                 Alert.alert("Sucesso", "produto cadastrado!");
                 console.log("currenteUser", currentUser);
+                console.log("snapshot.key",snapshot.key);
+                
             })
     }
 
