@@ -69,7 +69,7 @@ export default class CadastroProdutos extends Component<Props> {
             { cancelable: false }
         )
     }
-
+    
     registraProduto() { 
         const placeData = {
             nome: this.state.nome,
