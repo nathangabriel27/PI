@@ -17,6 +17,14 @@ export default class CadastroProdutos extends Component<Props> {
         };
     }
 
+    componentDidMount() {
+        const { currentUser } = firebase.auth();
+        if (currentUser) {
+            console.log("Estou logado: ", currentUser.uid)
+        }
+        //Buscar os dados do usuário logado no banco (depois de ter aprendido a fazer push no banco e criar auth)
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -62,30 +70,25 @@ export default class CadastroProdutos extends Component<Props> {
         )
     }
 
-    registraProduto() {
+    registraProduto() { 
         const placeData = {
             nome: this.state.nome,
             tipo: this.state.tipo,
-            /*  endereco: this.state.endereco,
-             telefone: this.state.telefone,
-             abertura: this.state.abertura,
-             fechamento: this.state.fechamento */
         }
-
-        firebase.database().ref("Users/UsersPeople/9Kh1zlihBJb2yw1TQUj4RqbdQhR2/Produtos")
+        const { currentUser } = firebase.auth();
+        if (currentUser) {
+            console.log("Estou logado: ", currentUser.uid)
+        }
+        firebase.database().ref(`Users/UsersPeople/${currentUser.uid}/Produtos`)
             .push(placeData)
             .then((snapshot) => {
                 const placeId = snapshot.key;
-                firebase.database().ref("PlaUsers/UsersPeople/9Kh1zlihBJb2yw1TQUj4RqbdQhR2")
+                firebase.database().ref(`Users/UsersPeople/${currentUser.uid}/Produtos`)
                     .update({
                         uid: placeId
                     })
-                Alert.alert("Sucesso", "produto cadastrado!", );
-                console.log("placerID: ",placeId);
-                console.log("placerData: ",placeData);
-                console.log("Snapshot",snapshot);
-                
-                
+                Alert.alert("Sucesso", "produto cadastrado!");
+                console.log("currenteUser", currentUser);
             })
     }
 

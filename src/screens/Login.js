@@ -314,7 +314,7 @@ const styles = StyleSheet.create({
   },
 
   iconTruck: {
-    fontSize :30,
+
     marginTop: 10,
     width: 58,
     height: 56,
