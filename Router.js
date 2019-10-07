@@ -30,10 +30,10 @@ class RouterComponent extends Component {
 					<Scene key="app">
 						<Scene key="auth" initial hideNavBar>
 
-							<Scene key="login" component={Login} />
+							<Scene key="login" component={Login} initial />
 							<Scene key="preCadastro" component={PreCadastro} />
 							<Scene key="cadastro" component={Cadastro} />
-							<Scene key="cadastroCompania" component={CadastroCompania} initial />
+							<Scene key="cadastroCompania" component={CadastroCompania}  />
 							<Scene key="dashboard" component={Dashboard} />
 							<Scene key="rota" component={Rota} />
 							<Scene key="produtos" component={Produtos}  />

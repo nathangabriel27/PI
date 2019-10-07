@@ -24,7 +24,7 @@ export default class Login extends Component<Props> {
 
       <View style={{ flex: 1, flexDirection: 'column' }} >
 
-        <View style={{ width: '100%', height: '80%' }} >
+        <View style={{ width: '100%', height: '80%', shadowColor: "#000", shadowOffset: { width: 0, height: 7, }, shadowOpacity: 0.43, shadowRadius: 9.51, elevation: 25, }} >
 
           <View style={styles.container}>
             <Image style={styles.iconTruck} source={require('../../assets/icon.png')} />
@@ -32,14 +32,12 @@ export default class Login extends Component<Props> {
             <Text style={styles.titleText}>PiTruck</Text>
 
             <View style={styles.viewInput}>
-
-
               <Icon style={styles.icon} name='person' />
               <TextInput
                 style={styles.inputStyle}
                 onChangeText={(text) => this.setState({ email: text })}
                 placeholder="seu email"
-                placeholderTextColor='#222'
+                placeholderTextColor='#fff'
                 value={this.state.email}
               />
 
@@ -51,13 +49,11 @@ export default class Login extends Component<Props> {
                 style={styles.inputStyle}
                 onChangeText={(text) => this.setState({ senha: text })}
                 placeholder="sua senha"
-                placeholderTextColor='#222'
+                placeholderTextColor='#fff'
                 secureTextEntry
                 value={this.state.senha}
               />
-
             </View>
-
             <TouchableOpacity onPress={() => this.esqueciMinhaSenha()} style={styles.forgotButton} >
               <Text style={styles.forgotText}>Esqueceu sua senha ?</Text>
             </TouchableOpacity>
@@ -67,11 +63,6 @@ export default class Login extends Component<Props> {
             </TouchableOpacity>
 
           </View>
-          
-          <View style={{ widht: '100%', height: '0.3%', backgroundColor: '#222'}} ></View>
-          <View style={{ widht: '100%', height: '0.3%', backgroundColor: 'red'}} ></View>
-          <View style={{ widht: '100%', height: '0.3%', backgroundColor: '#222'}} ></View>
-
 
         </View>
 
@@ -204,7 +195,12 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginTop: 0,
     marginBottom: 40,
-    alignItems: 'center'
+    alignItems: 'center',
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 7, },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    elevation: 25,
   },
 
   loginButton: {
@@ -216,7 +212,12 @@ const styles = StyleSheet.create({
     margin: 20,
     marginBottom: 10,
     width: width * 0.8,
-    alignItems: 'center'
+    alignItems: 'center',
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 7, },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    elevation: 25,
   },
 
   forgotButton: {
@@ -293,12 +294,13 @@ const styles = StyleSheet.create({
     width: width * 0.85,
     borderBottomColor: 'gray',
     borderBottomWidth: 1,
-    margin: width * 0.04
+    margin: width * 0.04,
+    color: "#fff"
   },
 
   icon: {
-    top: 8,
-    left: 10,
+    margin: 15,
+    color: "#fff"
   },
 
   viewInput: {

@@ -21,16 +21,16 @@ export default class Cadastro extends Component<Props> {
                     <Text style={styles.titleText}>PiTruck</Text>
 
                     <View style={styles.viewText}>
-                        <Text style={styles.textOrientacao}>
+                        <Text style={styles.textOrientacaoTitulo}>
                             Prezado usuário,
-                        {"\n"}{"\n"}
+                    </Text>
+                        <Text style={styles.textOrientacao}>
                             para garantir o melhor funcionamento do nosso sitema,
                             escolha a baixo o perfil de usário que se adeque melhor ao seu cenário.
+                            {"\n"}
+
+                            Cliente: Se você deseja enviar produtos para outros slugeres.
                         {"\n"}
-                            Leve a seguinte questão em consideração:
-                        {"\n"}{"\n"}
-                            Cliente: Se você deseja enviar produtos para outros lugeres.
-                        {"\n"}{"\n"}
                             Transportadora: Se você que fornecer o serviço de transporte.
                         </Text>
                     </View>
@@ -48,10 +48,10 @@ export default class Cadastro extends Component<Props> {
                             </TouchableOpacity>
                         </View>
 
-                        <View style={{ width: '50%', height: '100%', backgroundColor: '#FFF', borderColor: '#222', borderLeftWidth: '0.5' }}>
+                        <View style={{ width: '50%', height: '100%', backgroundColor: '#FFF', borderColor: '#222', borderLeftWidth: 0.5 }}>
                             <Image style={styles.iconCompany} source={require('../../assets/company.png')} />
 
-                            <TouchableOpacity onPress={() => this.abrirCadastro()} style={styles.transportadoraButton} >
+                            <TouchableOpacity onPress={() => this.abrirCadastroCompania()} style={styles.transportadoraButton} >
                                 <Text style={styles.buttonText}> Transportadora </Text>
                             </TouchableOpacity>
                         </View>
@@ -66,6 +66,10 @@ export default class Cadastro extends Component<Props> {
 
     abrirCadastro() {
         Actions.cadastro();
+    }
+
+    abrirCadastroCompania() {
+        Actions.cadastroCompania();
     }
 
 }
@@ -93,6 +97,12 @@ const styles = StyleSheet.create({
     textOrientacao: {
         fontSize: 20,
         textAlign: 'center',
+        color: "#fff",
+    },
+    textOrientacaoTitulo: {
+        fontSize: 25,
+        color: "#fff",
+        textAlign: 'justify',
     },
 
     iconCompany: {
@@ -118,6 +128,7 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         marginRight: 20,
         marginTop: 30,
-        alignItems: 'center'
-      },
+        alignItems: 'center',
+
+    },
 })
