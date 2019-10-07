@@ -12,15 +12,15 @@ export default class CadastroProdutos extends Component<Props> {
         this.state = {
             deviceWidth: width,
             deviceHeight: height,
-            nomeFantasia: "teste empresa ",
-            CNPJ: "12324342353",
-            razaoSocial: "teste LTDA",
-            CEP: "1234567890",
-            UF: "MG",
-            cidade: "BH",
-            bairro: "bairro",
-            rua: "ruaa tal",
-            numero: "123",
+            nomeFantasia: "",
+            CNPJ: "",
+            razaoSocial: "",
+            CEP: "",
+            UF: "",
+            cidade: "",
+            bairro: "",
+            rua: "",
+            numero: "",
         };
     }
 
@@ -168,23 +168,6 @@ export default class CadastroProdutos extends Component<Props> {
         )
     }
 
-
-    voltaTela() {
-        Actions.pop()
-    }
-
-    abrirDashboard() {
-        Actions.dashboard();
-    }
-
-    abrirRota() {
-        Actions.rota();
-    }
-
-    cadastroProdutos() {
-        Actions.rota();
-    }
-
 }
 
 
@@ -196,7 +179,7 @@ const styles = StyleSheet.create({
     },
 
     registerButton: {
-        backgroundColor: "green",
+        backgroundColor: "#008B8B",
         borderRadius: 10,
         padding: 10,
         margin: 20,
