@@ -94,6 +94,7 @@ export default class Login extends Component<Props> {
     console.log("tentando fazrlogin");
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((dadosUsuario) => {
+
         //Alert.alert("Sucesso!");
         Actions.dashboard();
       })
