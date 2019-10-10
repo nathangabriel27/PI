@@ -14,7 +14,7 @@ export default class Details extends Component {
     return (
       <Container>
         <TypeTitle>PRODUTOS</TypeTitle>
-        <TypeDescription>A ideia é apresentar os produtos cadastrados pelo usuário.</TypeDescription>
+        <TypeDescription>Selecione qual produto deseja</TypeDescription>
 
         <RequestButton onPress={() => {}}>
           <RequestButtonText>DATA E HORARIO ESTIMADO</RequestButtonText>

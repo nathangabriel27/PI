@@ -3,7 +3,7 @@ import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, D
 import { Actions } from 'react-native-router-flux';
 
 console.disableYellowBox = true;
-console . ignoredYellowBox  = [' Configurando um timer ']
+console.ignoredYellowBox = [' Configurando um timer ']
 
 //import { Actions } from 'router-native-router-flux';
 var { height, width } = Dimensions.get('window');
@@ -32,20 +32,29 @@ export default class App extends Component<Props> {
       deviceHeight: height
     };
   }
- 
+
 
   componentWillMount() {
     //Posso Fazer qualquer tipo de configuração global aqui como por exemplo o Firebase
     if (firebase.apps.length === 0) {
       firebase.initializeApp({
-        apiKey: "AIzaSyB8H6wnED0kHxo5dDOeFqwIh1I6bc30BVk",
-        authDomain: "projetopi-1567619287933.firebaseapp.com",
-        databaseURL: "https://projetopi-1567619287933.firebaseio.com",
-        projectId: "projetopi-1567619287933",
-        storageBucket: "",
-        messagingSenderId: "478223848222",
-        appId: "1:478223848222:web:1af3866a6784781bee2f0f",
-        measurementId: "G-2WW4D4N5T7"
+        // apiKey: "AIzaSyB8H6wnED0kHxo5dDOeFqwIh1I6bc30BVk",
+        // authDomain: "projetopi-1567619287933.firebaseapp.com",
+        // databaseURL: "https://projetopi-1567619287933.firebaseio.com",
+        // projectId: "projetopi-1567619287933",
+        // storageBucket: "",
+        // messagingSenderId: "478223848222",
+        // appId: "1:478223848222:web:1af3866a6784781bee2f0f",
+        // measurementId: "G-2WW4D4N5T7"
+
+        apiKey: "AIzaSyDxq6PCLeOROGN07IJJZ5ejZwz2Nlmn76Q",
+        authDomain: "projeto-pitruck.firebaseapp.com",
+        databaseURL: "https://projeto-pitruck.firebaseio.com",
+        projectId: "projeto-pitruck",
+        storageBucket: "projeto-pitruck.appspot.com",
+        messagingSenderId: "571242146199",
+        appId: "1:571242146199:web:1e8fce4ac623f921c8fcd2",
+        measurementId: "G-L8Z13MSN5P"
       })
     }
   }

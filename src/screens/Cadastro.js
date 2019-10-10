@@ -20,12 +20,11 @@ export default class Cadastro extends Component<Props> {
       nome: "",
       email: "",
       password: "",
-      CEP: "",
-      UF: "",
-      cidade: "",
-      bairro: "",
-      rua: "",
-      numero: "",
+      // cidade: "",
+      // endereco: "",
+      // telefone: "",
+      // abertura: "",
+      // fechamento: ""
     };
   }
 
@@ -42,7 +41,7 @@ export default class Cadastro extends Component<Props> {
 
       <View style={styles.container}>
         <ScrollView>
-
+          
           <TouchableOpacity onPress={() => this.voltaLogin()} style={styles.backButton} >
             <Text style={styles.buttonText}>Voltar para Login</Text>
           </TouchableOpacity>
@@ -59,50 +58,8 @@ export default class Cadastro extends Component<Props> {
           <TextInput
             style={styles.inputStyle}
             onChangeText={(text) => this.setState({ email: text })}
-            placeholder="seu email"
+            placeholder="transportadora@pi.com.br"
             value={this.state.email}
-          />
-
-          <TextInput
-            style={styles.inputStyle}
-            onChangeText={(text) => this.setState({ CEP: text })}
-            placeholder="CEP"
-            value={this.state.CEP}
-          />
-
-          <TextInput
-            style={styles.inputStyle}
-            onChangeText={(text) => this.setState({ UF: text })}
-            placeholder="Estado"
-            value={this.state.UF}
-          />
-
-          <TextInput
-            style={styles.inputStyle}
-            onChangeText={(text) => this.setState({ cidade: text })}
-            placeholder="Cidade"
-            value={this.state.cidade}
-          />
-
-          <TextInput
-            style={styles.inputStyle}
-            onChangeText={(text) => this.setState({ bairro: text })}
-            placeholder="Bairro"
-            value={this.state.bairro}
-          />
-
-          <TextInput
-            style={styles.inputStyle}
-            onChangeText={(text) => this.setState({ rua: text })}
-            placeholder="Rua"
-            value={this.state.rua}
-          />
-
-          <TextInput
-            style={styles.inputStyle}
-            onChangeText={(text) => this.setState({ numero: text })}
-            placeholder="Numero"
-            value={this.state.numero}
           />
 
           <TextInput
@@ -139,21 +96,15 @@ export default class Cadastro extends Component<Props> {
       ],
       { cancelable: false }
     )
-  }
 
-  registerUser(email, password, nome, CEP, UF, cidade, bairro, rua, numero) {
+
+  registerUser(email, password, nome) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((currentUser) => {
         firebase.database().ref("Users/UsersPeople/" + currentUser.user.uid).update({
           uid: currentUser.user.uid,
           email: email,
           nome: nome,
-          CEP: CEP,
-          UF: UF,
-          cidade: cidade,
-          bairro: bairro,
-          rua: rua,
-          numero: numero
 
         });
         Alert.alert("Sucesso!", "Usuário criado");
@@ -217,17 +168,17 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
 
   },
-
+   
   registerButton: {
-    backgroundColor: "#008B8B",
-    borderWidth: 0.5,
-    borderColor: '#222',
-    borderRadius: 10,
-    padding: 10,
-    marginLeft: 20,
-    marginRight: 20,
-    marginTop: 30,
-    alignItems: 'center'
+        backgroundColor: "#008B8B",
+        borderWidth: 0.5,
+        borderColor: '#222',
+        borderRadius: 10,
+        padding: 10,
+        marginLeft: 20,
+        marginRight: 20,
+        marginTop: 30,
+        alignItems: 'center'
   },
 
   buttonText: {

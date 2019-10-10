@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, TouchableOpacity, Alert, Image, Dimensions, TextInput, ScrollView } from 'react-native';
+import { Platform, StyleSheet, Text, View, TouchableOpacity, Alert, Image, Dimensions, TextInput } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import firebase from "firebase";
 
@@ -12,15 +12,8 @@ export default class CadastroProdutos extends Component<Props> {
         this.state = {
             deviceWidth: width,
             deviceHeight: height,
-            nomeFantasia: "",
-            CNPJ: "",
-            razaoSocial: "",
-            CEP: "",
-            UF: "",
-            cidade: "",
-            bairro: "",
-            rua: "",
-            numero: "",
+            nome: "teste empresa ",
+            CNPJ: "12324342353",
         };
     }
 
@@ -35,76 +28,26 @@ export default class CadastroProdutos extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
-                <ScrollView>
-                    <Text style={styles.titleText}>Cadastro de Compania</Text>
+
+                <Text style={styles.titleText}>Cadastro de Compania</Text>
 
 
-                    <TextInput
-                        style={styles.inputStyle}
-                        onChangeText={(text) => this.setState({ nomeFantasia: text })}
-                        placeholder="Nome da empresa"
-                        value={this.state.nomeFantasia}
-                    />
-                    <TextInput
-                        style={styles.inputStyle}
-                        onChangeText={(text) => this.setState({ tipo: text })}
-                        placeholder="CNPJ"
-                        value={this.state.CNPJ}
-                    />
+                <TextInput
+                    style={styles.inputStyle}
+                    onChangeText={(text) => this.setState({ nome: text })}
+                    placeholder="Nome da empresa"
+                    value={this.state.nome}
+                />
+                <TextInput
+                    style={styles.inputStyle}
+                    onChangeText={(text) => this.setState({ tipo: text })}
+                    placeholder="CNPJ"
+                    value={this.state.CNPJ}
+                />
 
-                    <TextInput
-                        style={styles.inputStyle}
-                        onChangeText={(text) => this.setState({ razaoSocial: text })}
-                        placeholder="Razão social"
-                        value={this.state.razaoSocial}
-                    />
-
-                    <TextInput
-                        style={styles.inputStyle}
-                        onChangeText={(text) => this.setState({ CEP: text })}
-                        placeholder="CEP"
-                        value={this.state.CEP}
-                    />
-
-                    <TextInput
-                        style={styles.inputStyle}
-                        onChangeText={(text) => this.setState({ uf: text })}
-                        placeholder="Estado"
-                        value={this.state.UF}
-                    />
-
-                    <TextInput
-                        style={styles.inputStyle}
-                        onChangeText={(text) => this.setState({ cidade: text })}
-                        placeholder="Cidade"
-                        value={this.state.cidade}
-                    />
-
-                    <TextInput
-                        style={styles.inputStyle}
-                        onChangeText={(text) => this.setState({ bairro: text })}
-                        placeholder="Bairro"
-                        value={this.state.bairro}
-                    />
-
-                    <TextInput
-                        style={styles.inputStyle}
-                        onChangeText={(text) => this.setState({ rua: text })}
-                        placeholder="Rua"
-                        value={this.state.rua}
-                    />
-
-                    <TextInput
-                        style={styles.inputStyle}
-                        onChangeText={(text) => this.setState({ numero: text })}
-                        placeholder="Numero"
-                        value={this.state.numero}
-                    />
-
-                    <TouchableOpacity onPress={() => this.cadastroProduto()} style={styles.registerButton} >
-                        <Text style={styles.buttonText}>Cadastrar</Text>
-                    </TouchableOpacity>
-                </ScrollView>
+                <TouchableOpacity onPress={() => this.cadastroProduto()} style={styles.registerButton} >
+                    <Text style={styles.buttonText}>Cadastrar</Text>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -124,17 +67,10 @@ export default class CadastroProdutos extends Component<Props> {
         )
     }
 
-    registraProduto() {
+    registraProduto() { 
         const placeData = {
-            nomeFantasia: this.state.nomeFantasia,
+            nome: this.state.nome,
             CNPJ: this.state.CNPJ,
-            razaoSocial: this.state.razaoSocial,
-            CEP: this.state.CEP,
-            UF: this.state.UF,
-            cidade: this.state.cidade,
-            bairro: this.state.bairro,
-            rua: this.state.rua,
-            nume: this.state.numero
         }
         const { currentUser } = firebase.auth();
         if (currentUser) {
@@ -168,6 +104,23 @@ export default class CadastroProdutos extends Component<Props> {
         )
     }
 
+
+    voltaTela() {
+        Actions.pop()
+    }
+
+    abrirDashboard() {
+        Actions.dashboard();
+    }
+
+    abrirRota() {
+        Actions.rota();
+    }
+
+    cadastroProdutos() {
+        Actions.rota();
+    }
+
 }
 
 
@@ -179,7 +132,7 @@ const styles = StyleSheet.create({
     },
 
     registerButton: {
-        backgroundColor: "#008B8B",
+        backgroundColor: "green",
         borderRadius: 10,
         padding: 10,
         margin: 20,
